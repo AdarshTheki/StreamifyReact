@@ -1,0 +1,61 @@
+.rows {
+  position: relative;
+  color: white;
+  margin-left: 20px;
+}
+.row_video {
+  position: fixed;
+  inset: 20% 50px;
+}
+.closeBtn {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  border: 0;
+  background-color: transparent;
+}
+.closeBtn .icon {
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 2rem;
+  background-color: white;
+}
+
+.closeBtn .icon:hover {
+  background-color: red;
+}
+
+.row__container {
+  display: flex;
+  gap: 15px;
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.row__post_container {
+  display: flex;
+  flex-direction: column;
+}
+.row__poster {
+  cursor: pointer;
+  transition: transform 0.3s ease-out;
+}
+.row__poster img {
+  height: 200px;
+  object-fit: contain;
+  border-radius: 1vmax;
+}
+.row__poster:hover {
+  transform: scale(0.96);
+}
+.row_details {
+  text-align: center;
+}
+.movie_title {
+  font-size: 1rem;
+}
+.movie_release_date {
+  text-transform: capitalize;
+  color: rgb(177, 177, 177);
+}
