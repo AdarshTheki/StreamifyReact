@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRef } from "react";
 import styled from "styled-components";
 import {
@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 
-function SignUpScreen() {
+const SignUpScreen = () => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const [newUser, setNewUser] = useState(false);
@@ -25,6 +25,7 @@ function SignUpScreen() {
       .catch((err) => {
         alert(err.message);
       });
+    
   };
 
   const signIn = (e) => {
@@ -41,6 +42,7 @@ function SignUpScreen() {
         alert(error.message);
       });
   };
+
 
   return (
     <>
@@ -81,7 +83,7 @@ function SignUpScreen() {
       </SignUpContainer>
     </>
   );
-}
+};
 export default SignUpScreen;
 
 const SignUpContainer = styled.div`

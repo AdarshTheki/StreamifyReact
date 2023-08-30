@@ -11,7 +11,16 @@
   box-sizing: border-box;
 }
 
+:root{
+  --gray: #E7E6E1 ;
+  --light: #F7F6E7 ;
+  --orange: #F2A154;
+  --black: #314E52;
+  --black50: #5C5470;
+}
+
 body {
   font-family: "Roboto", sans-serif;
-  background-color: #111;
+  background-color: var(--light);
+  
 }

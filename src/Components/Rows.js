@@ -1,45 +1,66 @@
 import React, { useEffect, useState } from "react";
 import axios from "../axios";
+import { NavLink } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import Images from "./Images";
 
-function Rows({ fetchUrl, isLargeRows }) {
+function Rows({ fetchUrl, show }) {
   const [movies, setMovies] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
-      const getData = await axios.get(fetchUrl);
-      setMovies(getData.data.results);
-      return getData;
+      try {
+        const getData = await axios.get(fetchUrl);
+        setMovies(getData.data.results);
+        setLoading(false);
+        return getData;
+      } catch (error) {
+        console.log(error.message);
+      }
     }
     fetchData();
   }, [fetchUrl]);
 
-  // const base_Url = "https://image.tmdb.org/t/p/original/";
-  const base_Url = "https://image.tmdb.org/t/p/w500/";
-
-  console.log(movies);
-
+  if (isLoading) {
+    return (
+      <div className='row__container'>
+        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} />
+      </div>
+    );
+  }
   return (
     <div className='row__container'>
-      {movies.map((movie) => (
-        <div key={movie.id} className='row__post_container'>
-          <div className='row__poster'>
-            <img
-              src={`${base_Url}${
-                isLargeRows ? movie.backdrop_path : movie.poster_path
-              } `}
-              alt={movie.name}
-            />
-          </div>
+      {movies?.map((movie) => {
+        const currentDate = new Date(
+          movie.release_date || movie.first_air_date
+        );
+        const movieTitle = movie?.original_title || movie?.name || movie?.title;
+        return(
+        <div key={movie?.id} className='row__post_container'>
+          <NavLink to={`show/${show}/${movie?.id}`} className='row__poster'>
+            <Images imgUrl={movie?.poster_path} />
+          </NavLink>
           <div className='row_details'>
             <h2 className='movie_title'>
-              {movie?.original_title || movie?.name || movie?.title}
+              {movieTitle.substring(0,25)}
             </h2>
             <p className='movie_release_date'>
-              {movie?.release_date || "coming soon..."}
+              {currentDate.toDateString()}
             </p>
           </div>
         </div>
-      ))}
+      )})}
     </div>
   );
 }

@@ -38,12 +38,8 @@ function Nav() {
               </>
             ) : (
               <>
-                <img
-                  src={user?.photoURL}
-                  alt='owner_photoURL'
-                  className='icon'
-                />
-                <span>{user?.displayName.slice(0,15)}</span>
+                <img src={user?.photoURL} alt='owner' className="icon"/>
+                <span>{user?.displayName.slice(0, 15)}</span>
               </>
             )}
           </NavLink>
@@ -88,9 +84,14 @@ const NavContainer = styled.div`
       font-weight: 600;
     }
     .icon {
-      font-size: 2rem;
+      font-size: 1rem;
       width: 50px;
       border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 5px;
     }
     span {
     }

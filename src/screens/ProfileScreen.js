@@ -2,31 +2,34 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { auth } from "../firebase";
 import { FaUserEdit } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 function ProfileScreen() {
-  const profile = useSelector((state) => state.user);
-  const { user } = profile;
+  const user = useSelector((state) => state.user.user);
 
   return (
     <ProfileContainer>
       <div className='UserProfile'>
-        {!profile ? (
-          <p className='UserProfile-notLoggedIn'>
+        {!user ? (
+          <div className="logged">
+          <p className='title'>
             <FaUserEdit /> You are not logged in.
           </p>
+          <NavLink className="btn" to="/login">Login</NavLink>
+          </div>
         ) : (
           <div className='UserProfile-content'>
             <h1>User Profile</h1>
             <div className='UserProfile-info'>
               <div className='UserProfile-avatar'>
-                <img src={user?.photoURL || "avatar.png"} alt='User Avatar' />
+                <img src={user?.photoURL || "avatar.png"} alt='Avatar' />
               </div>
               <div className='UserProfile-details'>
-                <p>Name: {user?.displayName || "N/A"}</p>
-                <p>UID: {user?.uid}</p>
-                <p>Email: {user?.email}</p>
-                <p>Verified: {user?.emailVerified ? "Yes" : "No"}</p>
-                <p>Time: {user?.lastSignInTime || "N/A"}</p>
+                <p><span>Name:</span> {user?.displayName || "N/A"}</p>
+                <p><span>UID:</span> {user?.uid}</p>
+                <p><span>Email:</span> {user?.email}</p>
+                <p><span>Verified:</span> {user?.emailVerified ? "Yes" : "No"}</p>
+                <p><span>Time:</span> {user?.lastSignInTime || "N/A"}</p>
               </div>
             </div>
             <button className='btn' onClick={() => auth.signOut()}>
@@ -77,10 +80,20 @@ const ProfileContainer = styled.div`
     }
   }
 
-  .UserProfile-info {
+  .logged {
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     align-items: center;
     margin-top: 20px;
+    .title {
+      font-size: 2rem;
+    }
+    .btn {
+      font-size: 2rem;
+      color: blue;
+      text-decoration: none;
+    }
   }
 
   .UserProfile-avatar img {
@@ -93,6 +106,13 @@ const ProfileContainer = styled.div`
 
   .UserProfile-details {
     flex: 1;
+
+    span {
+      display: inline-block;
+      width: 60px;
+      font-weight: 600;
+      color: #7091f5;
+    }
   }
 
   .UserProfile h1 {
