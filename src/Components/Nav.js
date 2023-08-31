@@ -62,7 +62,7 @@ const NavContainer = styled.div`
     background-color: transparent;
   }
   .nav__black {
-    background-color: #222;
+    background-color: #032541;
   }
   .nav__contents {
     margin: auto;

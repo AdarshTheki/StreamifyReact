@@ -1,44 +1,47 @@
-.rows {
-  position: relative;
-  color: white;
-  margin-left: 20px;
-}
-.row_video {
-  position: fixed;
-  inset: 20% 50px;
-}
-.closeBtn {
-  position: absolute;
-  top: -50px;
-  right: 0;
-  border: 0;
-  background-color: transparent;
-}
-.closeBtn .icon {
-  transition: all 0.3s ease-in-out;
-  cursor: pointer;
-  border-radius: 50%;
-  font-size: 2rem;
-  background-color: white;
-}
-
-.closeBtn .icon:hover {
-  background-color: red;
-}
-
 .row__container {
   display: flex;
   /* gap: 15px; */
   overflow: hidden;
   overflow-x: auto;
   scrollbar-width: thin;
+  padding-top: 10px;
 }
+.color-change-2x {
+	-webkit-animation: color-change-2x 2s linear infinite alternate both;
+	        animation: color-change-2x 2s linear infinite alternate both;
+}
+@-webkit-keyframes color-change-2x {
+  0% {
+    /* background: #19dcea; */
+    background: #19dcea7e;
+  }
+  100% {
+    /* background: #b22cff; */
+    background: #b22cff73;
+  }
+}
+@keyframes color-change-2x {
+  0% {
+    background: #19dcea7a;
+  }
+  100% {
+    background: #b22cff79;
+  }
+}
+
 .row__container::-webkit-scrollbar {
   height: 8px;
 }
 .row__container::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 2vmax;
+  background: linear-gradient(
+    to left,
+    rgb(111, 234, 188),
+    rgb(23, 183, 219),
+    rgb(3, 37, 65, 0.2),
+    rgb(23, 183, 219),
+    rgb(111, 234, 188)
+  );
+  border-radius: 100vmax;
 }
 
 .row__post_container {
@@ -48,42 +51,52 @@
 }
 .row__poster {
   z-index: 1;
+  overflow: hidden;
+  border-radius: 1vmax;
   cursor: pointer;
-  transition: transform 0.3s ease-out;
 }
 .row__poster img {
   height: 200px;
-  object-fit: contain;
   border-radius: 1vmax;
+  object-fit: contain;
+  transition: all 0.4s ease-out;
 }
-.row__poster:hover {
-  transform: scale(0.96);
+.row__poster:hover img {
+  scale: 1.1;
 }
 .row_details {
   color: #333;
   text-align: center;
 }
 .movie_title {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
   font-size: 18px;
+  transition: all 0.2s ease-out;
 }
+.movie_title:active,
+.movie_title:hover {
+  color: var(--four);
+}
+
 .movie_release_date {
   text-transform: capitalize;
-  color: #9085f7;
   font-size: 14px;
 }
 @media (max-width: 60em) {
-  .row__poster img{
+  /* .row__poster img {
     height: 160px;
   }
-  .movie_title{
+  .movie_title {
     font-size: 14px;
   }
-  .movie_release_date{
+  .movie_release_date {
     font-size: 10px;
-  }
+  } */
 }
 @media (max-width: 50em) {
-  .row__poster img {
+  /* .row__poster img {
     height: 130px;
   }
   .movie_title {
@@ -91,5 +104,5 @@
   }
   .movie_release_date {
     font-size: 8px;
-  }
+  } */
 }

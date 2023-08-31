@@ -12,6 +12,11 @@ const Movies = () => {
         <h1 className='trending__title'>Movie</h1>
         <div className='trending__buttons'>
           <button
+            onClick={() => setMovie("upcoming")}
+            className={`trending__btn ${movie === "upcoming" && "isActive"}`}>
+            upcoming
+          </button>
+          <button
             onClick={() => setMovie("now_playing")}
             className={`trending__btn ${
               movie === "now_playing" && "isActive"
@@ -28,14 +33,12 @@ const Movies = () => {
             className={`trending__btn ${movie === "top_rated" && "isActive"}`}>
             top rated
           </button>
-          <button
-            onClick={() => setMovie("upcoming")}
-            className={`trending__btn ${movie === "upcoming" && "isActive"}`}>
-            upcoming
-          </button>
         </div>
       </div>
-      <Rows fetchUrl={`/${show}/${movie}` + requests.api_link} show={show} />
+      <div className='trending__row'>
+        <Rows fetchUrl={`/${show}/${movie}` + requests.api_link} show={show} />
+        <div className='box-shadow'></div>
+      </div>
     </div>
   );
 };

@@ -12,6 +12,11 @@ const TVShow = () => {
         <h1 className='trending__title'>TV show</h1>
         <div className='trending__buttons'>
           <button
+            onClick={() => setTvShow("top_rated")}
+            className={`trending__btn ${tvShow === "top_rated" && "isActive"}`}>
+            top rated
+          </button>
+          <button
             onClick={() => setTvShow("on_the_air")}
             className={`trending__btn ${
               tvShow === "on_the_air" && "isActive"
@@ -24,11 +29,6 @@ const TVShow = () => {
             popular
           </button>
           <button
-            onClick={() => setTvShow("top_rated")}
-            className={`trending__btn ${tvShow === "top_rated" && "isActive"}`}>
-            top rated
-          </button>
-          <button
             onClick={() => setTvShow("airing_today")}
             className={`trending__btn ${
               tvShow === "airing_today" && "isActive"
@@ -37,9 +37,9 @@ const TVShow = () => {
           </button>
         </div>
       </div>
-      <div className="trending__row">
-      <Rows fetchUrl={`/${show}/${tvShow}` + requests.api_link} show={show} />
-      <div className="box-shadow"></div>
+      <div className='trending__row'>
+        <Rows fetchUrl={`/${show}/${tvShow}` + requests.api_link} show={show} />
+        <div className='box-shadow'></div>
       </div>
     </div>
   );

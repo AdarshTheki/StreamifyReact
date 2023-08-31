@@ -40,27 +40,26 @@ function Rows({ fetchUrl, show }) {
     );
   }
   return (
-    <div className='row__container'>
+    <div className='row__container color-change-2x'>
       {movies?.map((movie) => {
         const currentDate = new Date(
           movie.release_date || movie.first_air_date
         );
         const movieTitle = movie?.original_title || movie?.name || movie?.title;
-        return(
-        <div key={movie?.id} className='row__post_container'>
-          <NavLink to={`show/${show}/${movie?.id}`} className='row__poster'>
-            <Images imgUrl={movie?.poster_path} />
-          </NavLink>
-          <div className='row_details'>
-            <h2 className='movie_title'>
-              {movieTitle.substring(0,25)}
-            </h2>
-            <p className='movie_release_date'>
-              {currentDate.toDateString()}
-            </p>
+        return (
+          <div key={movie?.id} className='row__post_container'>
+            <NavLink to={`show/${show}/${movie?.id}`} className='row__poster'>
+              <Images imgUrl={movie?.poster_path} />
+            </NavLink>
+            <div className='row_details'>
+              <NavLink to={`show/${show}/${movie?.id}`} className='movie_title'>
+                {movieTitle.substring(0, 25)}
+              </NavLink>
+              <p className='movie_release_date'>{currentDate.toDateString()}</p>
+            </div>
           </div>
-        </div>
-      )})}
+        );
+      })}
     </div>
   );
 }

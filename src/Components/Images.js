@@ -1,25 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import lazy from "../assets/lazy.jpg";
 
-const Images = ({imgUrl}) => {
+const Images = ({ imgUrl }) => {
   const lazyUrl = `https://image.tmdb.org/t/p/w200/${imgUrl}`; // w500/original
-  const originalUrl = `https://image.tmdb.org/t/p/w500/${imgUrl}`; 
+  // const originalUrl = `https://image.tmdb.org/t/p/w500/${imgUrl}`;
 
-  const [imgSrc, setSrc] = useState(lazyUrl || lazy || originalUrl);
+  const [imgSrc, setSrc] = useState(lazy || lazyUrl);
 
   useEffect(() => {
     const img = new Image();
-    img.src = originalUrl;
+    img.src = lazyUrl;
     img.onload = () => {
-      setSrc(originalUrl);
+      setSrc(lazyUrl);
     };
-  }, [originalUrl]);
+  }, [lazyUrl]);
 
-  return (
-    <>
-      <img src={imgSrc} alt="img" loading='lazy' />
-    </>
-  )
-}
+  return <img src={imgSrc} alt='img' loading='lazy' />;
+};
 
-export default Images
+export default Images;

@@ -2,18 +2,20 @@
   width: 100%;
   position: relative;
   min-height: 300px;
-  /* max-height: 448px; */
   color: white;
   object-fit: contain;
-  margin-bottom: 20px;
 }
 
 .banner::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.8));
-  filter: blur(30px);
+  background: linear-gradient(
+    to left,
+    rgb(3, 37, 65, 0.3),
+    rgb(3, 37, 65, 0.9)
+  );
+  /* filter: blur(10px); */
 }
 
 .banner__contents {
@@ -39,18 +41,19 @@
   font-weight: 300;
   font-size: calc(10px + 1vw);
   max-width: 70vw;
-  color: rgb(209, 209, 209);
+  color: rgb(180, 180, 180);
   /* height: 80px; */
 }
 .banner__gradient {
   position: relative;
   z-index: 1;
-  height: 8rem;
-  background-image: linear-gradient(
+  height: 10rem;
+  background: linear-gradient(
     180deg,
     transparent,
-    rgba(17, 17, 17, 0.61),
-    #111
+    rgb(3, 37, 65, 0.2),
+    rgb(3, 37, 65, 0.5),
+    rgba(255, 255, 255)
   );
 }
 

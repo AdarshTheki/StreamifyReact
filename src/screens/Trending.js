@@ -17,21 +17,30 @@ const Trending = () => {
             className={`trending__btn ${date === "day" && "isActive"}`}>
             Today
           </button>
-          <button onClick={() => setDate("week")} className={`trending__btn ${date === "week" && "isActive"}`}>
+          <button
+            onClick={() => setDate("week")}
+            className={`trending__btn ${date === "week" && "isActive"}`}>
             Week
           </button>
-          <button onClick={() => setShow("movie")} className={`trending__btn ${show === "movie" && "isActive"}`}>
+          <button
+            onClick={() => setShow("movie")}
+            className={`trending__btn ${show === "movie" && "isActive"}`}>
             movie
           </button>
-          <button onClick={() => setShow("tv")} className={`trending__btn ${show === "tv" && "isActive"}`}>
+          <button
+            onClick={() => setShow("tv")}
+            className={`trending__btn ${show === "tv" && "isActive"}`}>
             TV
           </button>
         </div>
       </div>
-      <Rows
-        fetchUrl={`/trending/${show}/${date}` + requests.api_link}
-        show={show}
-      />
+      <div className='trending__row'>
+        <Rows
+          fetchUrl={`/trending/${show}/${date}` + requests.api_link}
+          show={show}
+        />
+        <div className='box-shadow'></div>
+      </div>
     </div>
   );
 };
