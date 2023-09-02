@@ -1,8 +1,78 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaPlayCircle } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import requests from "../../request";
+import axios from "../../axios";
+import Skeleton from "react-loading-skeleton";
 
-const DetailContainer = ({ movie }) => {
+const DetailContainer = () => {
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const location = useLocation();
+  const path = location.pathname.replace("/show/", "");
+
+  useEffect(() => {
+    let isMounted = true;
+    axios
+      .get(path + requests.api_link)
+      .then((res) => {
+        if (isMounted) {
+          setMovie(res.data);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          setError(err);
+          setLoading(false);
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [path]);
+
+  if (loading) {
+    return (
+      <div
+        style={{ position: "relative", minHeight: "80vh", background: "#ccc" }}>
+        <div
+          className='detailContainer'
+          style={{ margin: "auto", maxWidth: "90vw" }}>
+          <div className='img'>
+            <Skeleton width='80%' height={350} />
+          </div>
+          <div className='details'>
+            <Skeleton width='100%' height={80} />
+            <Skeleton width='100%' height={50} />
+            <div>
+              <Skeleton width='80%' height={50} count={3} />
+            </div>
+            <Skeleton width='50%' height={30} />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div
+        style={{
+          position: "relative",
+          minHeight: "80vh",
+          background: "#ccc",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+        <h1 style={{ fontSize: "3rem" }}>Error: {error.message}</h1>
+      </div>
+    );
+  }
+
   const {
     original_title,
     original_language,
