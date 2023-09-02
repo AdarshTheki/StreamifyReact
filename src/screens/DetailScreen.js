@@ -1,100 +1,130 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import axios from "../axios";
-import { TbBrandDisney } from "react-icons/tb";
-import { FaPlayCircle } from "react-icons/fa";
-import { AiFillYoutube, AiFillLike } from "react-icons/ai";
-import "./detail.css";
+import { NavLink, useLocation } from "react-router-dom";
 import requests from "../request";
+import Details from "../Components/Details/Details";
+import Skeleton from "react-loading-skeleton";
+import Cast from "../Components/Details/Cast";
+import Social from "../Components/Details/Social";
+import Related from "../Components/Details/Related";
 
 const DetailScreen = () => {
   const [movie, setMovie] = useState([]);
+  const [ids, setIds] = useState([]);
+  const [keywords, setKeywords] = useState([]);
+  const [credits, setCredits] = useState([]);
+  const [related, setRelated] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
   const location = useLocation();
   const path = location.pathname.replace("/show/", "");
 
   useEffect(() => {
+    setIsLoading(true);
     async function fetchData() {
-      const getData = await axios.get(path + requests.api_link);
-      setMovie(getData.data);
-      return getData;
+      try {
+        const getData = await axios.get(path + requests.api_link);
+        setMovie(getData.data);
+        return getData;
+      } catch (error) {
+        console.log("fetchData: ", error.message);
+      }
     }
     fetchData();
+
+    async function fetchIds() {
+      try {
+        const getIds = await axios.get(
+          path + `/external_ids` + requests.api_link
+        );
+        setIds(getIds.data);
+        return getIds;
+      } catch (error) {
+        console.log("fetchIds: ", error.message);
+      }
+    }
+    fetchIds();
+
+    async function fetchKeywords() {
+      try {
+        const getKeyword = await axios.get(
+          path + `/keywords` + requests.api_link
+        );
+        setKeywords(getKeyword.data);
+        return getKeyword;
+      } catch (error) {
+        console.log("fetchKeywords: ", error.message);
+      }
+    }
+    fetchKeywords();
+
+    async function fetchCredits() {
+      try {
+        const getCredits = await axios.get(
+          path + `/credits` + requests.api_link
+        );
+        setCredits(getCredits.data);
+        return getCredits;
+      } catch (error) {
+        console.log("fetchCredits: ", error.message);
+      }
+    }
+    fetchCredits();
+
+    async function fetchRecommendations() {
+      try {
+        const getRecommendations = await axios.get(
+          path + `/recommendations` + requests.api_link + `&page=1`
+        );
+        setRelated(getRecommendations.data);
+        return getRecommendations;
+      } catch (error) {
+        console.log("recommendations: ", error.message);
+      }
+    }
+    fetchRecommendations();
+
+    setIsLoading(false);
   }, [path]);
 
-  console.log(movie);
-  
-  const {
-    original_title,
-    original_language,
-    original_name,
-    name,
-    title,
-    genres,
-    release_date,
-    first_air_date,
-    backdrop_path,
-    overview,
-    production_companies,
-    production_countries,
-    spoken_languages,
-    vote_average,
-    runtime,
-    revenue,
-    poster_path,
-    popularity,
-    origin_country,
-    id,
-    episode_run_time,
-  } = movie;
-
-  const YourDate = new Date(release_date || first_air_date);
-  const YourTitle = original_name || original_title || title || name;
-  const YourLanguage = origin_country || original_language 
-  
-  return (
-    <div
-      style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
-      }}
-      className='detailScreen'>
-      <div className='detailContainer'>
-        <div className='img'>
-          <img
-            src={"https://image.tmdb.org/t/p/w500/" + poster_path}
-            alt={YourTitle}
-          />
-        </div>
-        <div className='details'>
-          <h1 className='title'>
-            {YourTitle}
-            <span> ({release_date?.substring(0, 4)})</span>
-          </h1>
-          <div className='desc'>
-            <span>{YourDate.toDateString()}</span>
-            <span>[{YourLanguage}]</span>
-            <span>
-              {genres?.map((e) => {
-                return <span key={e?.id}>{e?.name}, </span>;
-              })}
-            </span>
-            <span>
-              {(runtime / 60)?.toFixed(1).substring(0, 1)}h{" "}
-              {(runtime / 30).toFixed(1)}m
-            </span>
-          </div>
-          <div className='icons'>
-            <TbBrandDisney className='icon' />
-            <AiFillYoutube className='icon' />
-            <AiFillLike className='icon' />
-            <button className='btn'>
-              <FaPlayCircle className='btnIcon' /> Play Tailer
-            </button>
-          </div>
-          <p className='disc'>{overview}</p>
-          <div className='artist'></div>
-        </div>
+  const LoadingShow = () => {
+    return (
+      <div className='DetailScreen'>
+        <Skeleton width={300} height={200} />
+        <Skeleton width={300} height={200} />
+        <Skeleton width={300} height={200} />
+        <Skeleton width={300} height={200} />
       </div>
-    </div>
+    );
+  };
+
+  return (
+    <>
+      {isLoading ? (
+        <LoadingShow />
+      ) : (
+        <>
+          <Details movie={movie} />
+          <div className='max-width'>
+            <div className='more-details'>
+              <Cast {...credits} />
+              <Social ids={ids} keywords={keywords} {...movie} />
+            </div>
+            <div>
+              <h2>Recommendations</h2>
+              <div className='related'>
+                {related?.results?.slice(0, 10)?.map((items) => {
+                  return <Related key={items.id} {...items} />;
+                })}
+                <NavLink className='related-link inline-flex' to={``}>
+                  more details
+                </NavLink>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

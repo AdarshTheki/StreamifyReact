@@ -8,7 +8,7 @@ const requests = {
   fetchLatestTailer: `/movieLatest?api_key=${API_KEY}&language=en-US`,
 
   api_link: `?api_key=${API_KEY}&language=en-US`,
-  
+
   trending_all_week: `/trending/all/week?api_key=${API_KEY}&language=en-US`,
   trending_all_day: `/trending/all/day?api_key=${API_KEY}&language=en-US`,
   trending_movie_day: `/trending/movie/day?api_key=${API_KEY}&language=en-US`,
@@ -24,14 +24,17 @@ const requests = {
   movie_detail: `/movie/movie_id?api_key=${API_KEY}&language=en-US`,
   movie_external_ids: `/movie/movie_id/external_ids?api_key=${API_KEY}&language=en-US`,
   movie_credits: `/movie/movie_id/credits?api_key=${API_KEY}&language=en-US`,
+  movie_recommendations: `/movie/movie_id/recommendations?api_key=${API_KEY}&language=en-US`,
+  movie_reviews: `/movie/movie_id/reviews?api_key=${API_KEY}&language=en-US&page=1`,
+  movie_keywords: `/movie/movie_id/keywords?api_key=${API_KEY}&language=en-US&page=1`,
+  movie_videos: `/movie/movie_id/videos?api_key=${API_KEY}&language=en-US`,
+  movie_images: `/movie/movie_id/images?api_key=${API_KEY}`,
 
   tv_airing_today: `/tv/airing_today?api_key=${API_KEY}&language=en-US`,
   tv_on_the_air: `/tv/on_the_air?api_key=${API_KEY}&language=en-US`,
   tv_popular: `/tv/popular?api_key=${API_KEY}&language=en-US`,
   tv_top_rated: `/tv/top_rated?api_key=${API_KEY}&language=en-US`,
-  tv_detail: `/tv/movie_id?api_key=${API_KEY}&language=en-US`,
-  tv_external_ids: `/tv/movie_id/external_ids?api_key=${API_KEY}&language=en-US`,
-  tv_credits: `/tv/movie_id/credits?api_key=${API_KEY}&language=en-US`,
+  tv_detail: `/tv/tv_id?api_key=${API_KEY}&language=en-US`,
 
   // MOVIE LISTS
   // movie/now_playing, movie/popular, movie/top_rated, movie/upcoming,

@@ -8,7 +8,7 @@
 }
 .color-change-2x {
 	-webkit-animation: color-change-2x 2s linear infinite alternate both;
-	        animation: color-change-2x 2s linear infinite alternate both;
+	animation: color-change-2x 2s linear infinite alternate both;
 }
 @-webkit-keyframes color-change-2x {
   0% {
@@ -36,8 +36,6 @@
   background: linear-gradient(
     to left,
     rgb(111, 234, 188),
-    rgb(23, 183, 219),
-    rgb(3, 37, 65, 0.2),
     rgb(23, 183, 219),
     rgb(111, 234, 188)
   );

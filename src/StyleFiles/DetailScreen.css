@@ -1,0 +1,228 @@
+.detailScreen {
+  position: relative;
+  max-width: 100%;
+  min-height: 570px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: contain;
+  overflow: hidden;
+}
+.detailScreen::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7));
+  /* filter: blur(10px); */
+}
+.detailContainer {
+  margin: 0 auto;
+  position: relative;
+  top: 80px;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+.detailContainer .img {
+  flex: 0.3;
+}
+.detailContainer .img img {
+  display: block;
+  border-radius: 1vmax;
+  margin: 0 auto;
+  width: 23vw;
+}
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 0.7;
+  color: #fff;
+}
+.details .title {
+  font-size: calc(10px + 4vw);
+  line-height: 0.9;
+}
+.details .title span {
+  color: rgb(150, 150, 150);
+  font-weight: 400;
+  font-size: calc(15px + 2vw);
+}
+.details .desc {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  font-size: calc(14px + 0.5vw);
+}
+.details .icons {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.details .icon {
+  cursor: pointer;
+  color: #222;
+  background: #fff;
+  font-size: 2rem;
+  border-radius: 50%;
+  padding: 5px;
+  transition: all 0.2s ease-out;
+}
+.details .icon:hover {
+  transform: scale(0.9);
+}
+.details .btn {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  transition: all 0.2s ease-out;
+}
+.details .btn:hover {
+  transform: scale(0.9);
+}
+
+.details .disc {
+  font-size: calc(12px + 0.5vw);
+  font-weight: 300;
+  width: 90%;
+  color: #c9c9c9;
+}
+.details .price {
+  font-size: calc(14px + 0.5vw);
+}
+.details .price span {
+  margin-right: 20px;
+}
+
+/* More Details */
+.more-details {
+  margin: 30px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Cast container*/
+.cast {
+  overflow-y: hidden;
+}
+.cast::-webkit-scrollbar {
+  height: 8px;
+}
+.cast::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.273);
+  border-radius: 100vmax;
+}
+.cast-container {
+  padding: 5px 0;
+  display: flex;
+  gap: 10px;
+}
+.cast-card {
+  border-radius: 5px;
+  text-align: center;
+  width: 100px;
+  min-width: 100px;
+  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.2);
+}
+.cast-card .cast-img {
+  width: 100px;
+}
+.cast-img img {
+  border-radius: 5px;
+  width: 100%;
+  object-fit: contain;
+}
+#cast-name {
+  font-size: 14px;
+}
+#cast-char {
+  font-size: 12px;
+}
+
+/* Social container*/
+.icon {
+  margin-right: 10px;
+  cursor: pointer;
+}
+.keywords,
+.social {
+  margin-left: 30px;
+  margin-bottom: 10px;
+}
+.keywords__title,
+.social__title {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.keywords__container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.keywords-card {
+  padding: 5px 10px;
+  background: gray;
+  color: white;
+  text-transform: capitalize;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+@media (max-width:50em) {
+  .more-details{
+    display: block;
+    margin: 20px auto;
+  }
+  .social, .keywords{
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}
+
+.related {
+  margin: 10px auto;
+  display: flex;
+  /* align-items: center; */
+  /* justify-content: center; */
+  overflow-y: hidden;
+  padding: 10px;
+  text-align: center;
+  scrollbar-width: thin;
+  gap: 10px;
+}
+.related::-webkit-scrollbar {
+  height: 8px;
+}
+.related::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.273);
+  border-radius: 100vmax;
+}
+.related-link {
+  text-decoration: none;
+  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  min-width: 250px;
+}
+.related-img{
+  position: relative;
+  width: 250px;
+}
+.related-link img {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.related-star{
+  position: absolute;
+  font-size: 1.5rem;
+  right: 10px;
+  bottom: 10px;
+}
+.related-link .related-title{
+  font-size: 1rem;
+  color: #222;
+  font-weight: 500;
+}

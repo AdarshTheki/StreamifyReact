@@ -1,19 +1,22 @@
 import React, { useState } from "react";
 import Nav from "../Components/Nav";
 import Banner from "../Components/Banner";
-import "./Home.css";
-import Trending from "./Trending";
-import Movies from "./Movies";
-import TVShow from "./TVShow";
+import Trending from "../Components/Trending";
+import Movies from "../Components/Movies";
+import TVShow from "../Components/TVShow";
 
 function HomeScreen() {
   return (
     <div className='homeScreen'>
       <Nav />
-      <Banner />
-      <Trending />
+      <br />
+      <br />
+      <br />
+      <br />
+      {/* <Banner /> */}
+      {/* <Trending /> */}
       <Movies />
-      <TVShow />
+      {/* <TVShow /> */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import requests from "../request";
-import Rows from "../Components/Rows";
+import Rows from "./Rows";
 
 const TVShow = () => {
   const [tvShow, setTvShow] = useState("top_rated");

@@ -2,8 +2,10 @@
 
 @import "./Banner.css";
 @import "./LoginScreen.css";
-/* @import './Nav.css'; */
 @import "./Rows.css";
+@import "./DetailScreen.css";
+@import "./HomeScreen.css";
+
 
 * {
   margin: 0;
@@ -29,4 +31,14 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: var(--light);
   min-height: 200vh;
+}
+.inline-flex{
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.max-width{
+  width: 90vw;
+  margin: auto;
 }

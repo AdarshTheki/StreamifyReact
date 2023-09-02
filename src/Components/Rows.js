@@ -22,6 +22,7 @@ function Rows({ fetchUrl, show }) {
     fetchData();
   }, [fetchUrl]);
 
+
   if (isLoading) {
     return (
       <div className='row__container'>
@@ -45,7 +46,7 @@ function Rows({ fetchUrl, show }) {
         const currentDate = new Date(
           movie.release_date || movie.first_air_date
         );
-        const movieTitle = movie?.original_title || movie?.name || movie?.title;
+        const movieTitle = movie?.name || movie?.title || movie?.original_title;
         return (
           <div key={movie?.id} className='row__post_container'>
             <NavLink to={`show/${show}/${movie?.id}`} className='row__poster'>
@@ -53,7 +54,7 @@ function Rows({ fetchUrl, show }) {
             </NavLink>
             <div className='row_details'>
               <NavLink to={`show/${show}/${movie?.id}`} className='movie_title'>
-                {movieTitle.substring(0, 25)}
+                {movieTitle.substring(0, 23)}
               </NavLink>
               <p className='movie_release_date'>{currentDate.toDateString()}</p>
             </div>
