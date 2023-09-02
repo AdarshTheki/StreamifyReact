@@ -1,13 +1,93 @@
-import React from "react";
+import axios from "../../axios";
+import requests from "../../request";
+import React, { useEffect, useState } from "react";
 import {
   FaFacebook,
   FaInstagramSquare,
   FaTwitter,
   FaWikipediaW,
 } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
+import { NavLink, useLocation } from "react-router-dom";
 
-const Social = ({ keywords, ids, }) => {
+const Social = () => {
+  const [ids, setIds] = useState(null);
+  const [keywords, setKeywords] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [loading1, setLoading1] = useState(true);
+  const [error, setError] = useState(null);
+  const location = useLocation();
+  const path = location.pathname.replace("/show/", "");
+
+  useEffect(() => {
+    let isMounted = true;
+    axios
+      .get(path + `/external_ids` + requests.api_link)
+      .then((res) => {
+        if (isMounted) {
+          setIds(res.data);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          setError(err);
+          setLoading(false);
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [path]);
+
+  useEffect(() => {
+    let isMounted = true;
+    axios
+      .get(path + `/keywords` + requests.api_link)
+      .then((res) => {
+        if (isMounted) {
+          setKeywords(res.data);
+          setLoading1(false);
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          setError(err);
+          setLoading1(false);
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [path]);
+
+  if (loading && loading1) {
+    return (
+      <div style={{ background: "transparent", padding: "30px", maxWidth: "40vw", margin:'auto'}}>
+        <Skeleton width={300} height={30} />
+        <div style={{ display: "flex", gap: "20px", overflow: "hidden" }}>
+        <Skeleton width={40} height={40} style={{borderRadius:'50%'}} />
+        <Skeleton width={40} height={40} style={{borderRadius:'50%'}} />
+        <Skeleton width={40} height={40} style={{borderRadius:'50%'}} />
+        <Skeleton width={40} height={40} style={{borderRadius:'50%'}} />
+        </div>
+        <br />
+        <div style={{ display: "flex", flexWrap:'wrap', gap: "20px", overflow: "hidden" }}>
+          <Skeleton width={100} height={30} />
+          <Skeleton width={100} height={30} />
+          <Skeleton width={100} height={30} />
+          <Skeleton width={100} height={30} />
+          <Skeleton width={100} height={30} />
+          <Skeleton width={100} height={30} />
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <h1>Error: {error.message}</h1>;
+  }
+
   return (
     <div>
       <div className='social'>
@@ -50,8 +130,10 @@ const Social = ({ keywords, ids, }) => {
         </div>
       </div>
       <div className='keywords'>
-        <div className='keywords__title'>Go to full Cast & Crew</div>
-    </div>
+        <NavLink to={`/credits/${path}`} className='_links'>
+          Full Cast & Crew
+        </NavLink>
+      </div>
     </div>
   );
 };

@@ -1,43 +1,95 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import lazy from '../../assets/compress.jpg'
+import { NavLink, useLocation } from "react-router-dom";
+import axios from "../../axios";
+import requests from "../../request";
+import Skeleton from "react-loading-skeleton";
 
-const Related = ({
-  backdrop_path,
-  title,
-  original_title,
-  id,
-  media_type,
-  vote_average,
-}) => {
+const Related = () => {
+  const [related, setRelated] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const location = useLocation();
+  const path = location.pathname.replace("/show/", "");
+
   const rating = (star) =>
     "★★★★★☆☆☆☆☆".slice(
       Math.round((10 - star) / 2),
       Math.round((20 - star) / 2)
     );
 
-    const originalUrl = `https://image.tmdb.org/t/p/w300/${backdrop_path}`;
-    const [imgSrc, setSrc] = useState(lazy || originalUrl);
+  useEffect(() => {
+    let isMounted = true;
+    axios
+      .get(path + `/recommendations` + requests.api_link)
+      .then((res) => {
+        if (isMounted) {
+          setRelated(res.data?.results);
+          setLoading(false);
+        }
+      })
+      .catch((err) => {
+        if (isMounted) {
+          setError(err);
+          setLoading(false);
+        }
+      });
+    return () => {
+      isMounted = false;
+    };
+  }, [path]);
 
-    useEffect(() => {
-      const img = new Image();
-      img.src = originalUrl;
-      img.onload = () => {
-        setSrc(originalUrl);
-      };
-    }, [originalUrl]);
+  if (loading) {
+    return (
+      <div style={{ background: "#ddd", padding: "10px" }}>
+        <Skeleton width={200} height={40} />
+        <div style={{ display: "flex", gap: "20px", overflow: "hidden" }}>
+          <Skeleton width={250} height={150} />
+          <Skeleton width={250} height={150} />
+          <Skeleton width={250} height={150} />
+          <Skeleton width={250} height={150} />
+          <Skeleton width={250} height={150} />
+        </div>
+      </div>
+    );
+  }
 
+  if (error) {
+    return <h1>Error: {error.message}</h1>;
+  }
 
   return (
-    <NavLink to={`/show/${media_type}/${id}`} className='related-link'>
-      <div className='related-img'>
-        <span className='related-star' style={{ color: "#ffe600" }}>
-          {rating(vote_average) || "NA"}
-        </span>
-        <img src={imgSrc} alt='img' loading='lazy' width={300} />
+    <>
+      <h2>Recommendations</h2>
+      <div className='related'>
+        {related?.slice(0, 7)?.map((item) => {
+          return (
+            <NavLink
+              key={item?.id}
+              to={`/show/${item?.media_type}/${item?.id}`}
+              className='related-link'>
+              <div className='related-img'>
+                <span className='related-star' style={{ color: "#ffe600" }}>
+                  {rating(item?.vote_average) || "NA"}
+                </span>
+                <img
+                  src={`https://image.tmdb.org/t/p/w300/${item?.backdrop_path}`}
+                  alt='img'
+                  loading='lazy'
+                />
+              </div>
+              <p className='related-title'>
+                {item?.title || item?.original_title || "NA"}
+              </p>
+            </NavLink>
+          );
+        })}
+        <div className='related-link inline-flex'>
+          <NavLink to={`/credits/${path}`} className='_links'>
+            More details
+          </NavLink>
+        </div>
       </div>
-      <p className='related-title'>{title || original_title || "NA"}</p>
-    </NavLink>
+    </>
   );
 };
 

@@ -42,3 +42,12 @@ body {
   width: 90vw;
   margin: auto;
 }
+._links{
+  font-weight: 500;
+  color: var(--first);
+  font-size: 1rem;
+  transition: all .2s ease-out;
+}
+._links:hover{
+  color: var(--second);
+}
