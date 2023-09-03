@@ -2,23 +2,27 @@ import React, { useEffect, useState } from "react";
 import axios from "../axios";
 import requests from "../request";
 import Skeleton from "react-loading-skeleton";
-import { AiFillLike, AiFillStar } from "react-icons/ai";
+import { AiFillLike } from "react-icons/ai";
 
 function Banner() {
   const [movie, setMovie] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const getMovieData = await axios.get(requests?.movie_upcoming);
-        setMovie(
-          getMovieData.data.results[
-            Math.floor(Math.random() * getMovieData.data.results.length - 1)
-          ]
-        );
-        setLoading(false);
-        return getMovieData;
+        if (getMovieData.status !== 200) {
+          setIsError(true);
+        } else {
+          setMovie(
+            getMovieData.data.results[
+              Math.floor(Math.random() * getMovieData.data.results.length - 1)
+            ]
+          );
+          setLoading(false);
+        }
       } catch (error) {
         console.log(error.message);
       }
@@ -44,8 +48,43 @@ function Banner() {
     };
   }, [originalUrl]);
 
+  const rating = (star) =>
+    "★★★★★☆☆☆☆☆".slice(
+      Math.round((10 - star) / 2),
+      Math.round((20 - star) / 2)
+    );
+  const releaseDate = new Date(movie?.release_date);
+
   if (isLoading) {
-    return <Skeleton className='banner'></Skeleton>;
+    return (
+      <div
+        style={{
+          position: "relative",
+          minHeight: "400px",
+          width: "80vw",
+          margin: " 40px auto",
+        }}>
+        <br />
+        <Skeleton width='100%' height={30} />
+        <Skeleton width='80%' height={20} />
+        <Skeleton width='90%' height={30} />
+        <div style={{ display: "flex", gap: "5vw", margin: "30px auto" }}>
+          <Skeleton width={30} height={30} style={{ borderRadius: "50%" }} />
+          <Skeleton width={30} height={30} style={{ borderRadius: "50%" }} />
+          <Skeleton width={100} height={20} />
+          <Skeleton width={30} height={30} style={{ borderRadius: "50%" }} />
+          <Skeleton width={100} height={20} />
+        </div>
+        <Skeleton width='50%' height={10} />
+        <Skeleton width='100%' height={20} />
+        <Skeleton width='80%' height={10} />
+        <Skeleton width='60%' height={10} />
+        <Skeleton width='100%' height={20} />
+        <br />
+        <Skeleton width='80%' height={30} />
+        <Skeleton width='50%' height={30} />
+      </div>
+    );
   }
 
   return (
@@ -56,20 +95,24 @@ function Banner() {
         backgroundSize: "cover",
         backgroundPosition: "center 30%",
       }}>
+      {isError && (
+        <h1 style={{ fontSize: "3rem", textAlign: "center", color: "red" }}>
+          "the server cannot or will not process the request due to something
+          that is perceived to be a client error"
+        </h1>
+      )}
       <div className='banner__contents'>
         <h1 className='banner__title'>
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
         <div className='banner__detail'>
-          <span>
-            <AiFillStar color="yellow" className="icon"/>
-            {movie?.vote_average || "NA"}
+          <span style={{ color: "gold", fontSize: "1.2rem" }}>
+            {rating(movie?.vote_average) || "NA"}
           </span>
+          <span>Release on {releaseDate?.toDateString() || "NA"}</span>
           <span>
-            Release on {new Date(movie?.release_date).toDateString() || "NA"}
-          </span>
-          <span>
-            <AiFillLike color="red" className="icon"/> {movie?.popularity.toFixed() || "NA"}
+            <AiFillLike color='red' className='icon' />
+            {movie?.popularity?.toFixed() || "NA"}
           </span>
         </div>
         <h1 className='banner__description'>

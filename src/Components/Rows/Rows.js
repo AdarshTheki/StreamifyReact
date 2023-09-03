@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../axios";
+import axios from "../../axios";
 import { NavLink } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import Images from "./Images";
@@ -7,14 +7,19 @@ import Images from "./Images";
 function Rows({ fetchUrl, show }) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const getData = await axios.get(fetchUrl);
-        setMovies(getData.data.results);
-        setLoading(false);
-        return getData;
+        if (getData.status !== 200) {
+          setIsError(true);
+          return;
+        } else {
+          setMovies(getData.data.results);
+          setLoading(false);
+        }
       } catch (error) {
         console.log(error.message);
       }
@@ -22,21 +27,20 @@ function Rows({ fetchUrl, show }) {
     fetchData();
   }, [fetchUrl]);
 
-
   if (isLoading) {
     return (
       <div className='row__container'>
-        <Skeleton width={200} height={250} />
-        <Skeleton width={200} height={250} />
-        <Skeleton width={200} height={250} />
-        <Skeleton width={200} height={250} />
-        <Skeleton width={200} height={250} />
-        <Skeleton width={200} height={250} />
-        <Skeleton width={200} height={250} />
-        <Skeleton width={200} height={250} />
-        <Skeleton width={200} height={250} />
-        <Skeleton width={200} height={250} />
-        <Skeleton width={200} height={250} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
+        <Skeleton width={200} height={250} style={{ marginLeft: "20px" }} />
       </div>
     );
   }

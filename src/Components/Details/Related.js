@@ -3,6 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import axios from "../../axios";
 import requests from "../../request";
 import Skeleton from "react-loading-skeleton";
+// import lazy from "../../assets/lazy.jpg";
 
 const Related = () => {
   const [related, setRelated] = useState(null);
@@ -61,7 +62,7 @@ const Related = () => {
     <>
       <h2>Recommendations</h2>
       <div className='related'>
-        {related?.slice(0, 7)?.map((item) => {
+        {related?.map((item) => {
           return (
             <NavLink
               key={item?.id}
@@ -72,7 +73,9 @@ const Related = () => {
                   {rating(item?.vote_average) || "NA"}
                 </span>
                 <img
-                  src={`https://image.tmdb.org/t/p/w300/${item?.backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/w300/${
+                    item?.backdrop_path || item?.poster_path
+                  }`}
                   alt='img'
                   loading='lazy'
                 />
@@ -85,7 +88,7 @@ const Related = () => {
         })}
         <div className='related-link inline-flex'>
           <NavLink to={`/credits/${path}`} className='_links'>
-            More details
+            More details →
           </NavLink>
         </div>
       </div>

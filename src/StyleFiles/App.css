@@ -29,7 +29,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-color: var(--light);
+  /* background-color: var(--light); */
   min-height: 200vh;
 }
 .inline-flex{

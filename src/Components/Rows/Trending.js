@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import requests from "../request";
+import requests from "../../request";
 import Rows from "./Rows";
-import { NavLink } from "react-router-dom";
 
 const Trending = () => {
   const [date, setDate] = useState("day");

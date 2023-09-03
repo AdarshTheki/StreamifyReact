@@ -39,7 +39,7 @@ function Nav() {
             ) : (
               <>
                 <img src={user?.photoURL} alt='owner' className="icon"/>
-                <span>{user?.displayName.slice(0, 15)}</span>
+                <span>{user?.displayName?.slice(0, 15)}</span>
               </>
             )}
           </NavLink>

@@ -1,6 +1,5 @@
 .trending {
   margin: 10px auto;
-  background-color: #f3f3f3;
 }
 .trending__setting {
   display: flex;
@@ -16,7 +15,7 @@
 .trending__buttons {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 1px;
   border: 2px solid var(--four);
   border-radius: 100vmax;
   overflow: hidden;
@@ -36,7 +35,7 @@
 }
 .trending__btn:hover,
 .isActive {
-  background-color: var(--first);
+  background-color:var(--first);
   color: var(--five);
 }
 
@@ -53,13 +52,13 @@
   box-shadow: -20px 0px 3px -5px rgb(255, 255, 255, 0.7) inset;
 }
 @media (max-width: 60em) {
-  .trending__setting{
+  .trending__setting {
     gap: 10px;
   }
   .trending__title {
     font-size: 16px;
   }
-  .trending__btn{
+  .trending__btn {
     font-size: 14px;
     padding: 3px 8px;
   }
@@ -68,7 +67,7 @@
   .trending__title {
     font-size: 12px;
   }
-  .trending__btn{
+  .trending__btn {
     font-size: 10px;
   }
 }

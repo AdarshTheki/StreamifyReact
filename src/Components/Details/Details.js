@@ -162,6 +162,7 @@ const DetailContainer = () => {
             <span>Revenue: {CurrencyRevenue || "NA"}</span>
           </div>
         </div>
+        
       </div>
     </div>
   );
