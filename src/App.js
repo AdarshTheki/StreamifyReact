@@ -1,14 +1,15 @@
 import HomeScreen from "./screens/HomeScreen";
 import { Routes, Route } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import ProfileScreen from "./screens/ProfileScreen";
 import Nav from "./Components/Nav";
-import "./StyleFiles/App.css";
+import "./App.css";
 import DetailScreen from "./screens/DetailScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import { useEffect } from "react";
 import { auth } from "./firebase";
 import { login } from "./redux/userSlice";
+import CreditsScreen from "./screens/CreditsScreen";
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
         <Route path='login' element={<SignUpScreen />} />
         <Route path='profile' element={<ProfileScreen />} />
         <Route path='show/:id/:id' element={<DetailScreen />} />
+        <Route path='credits/:id/:id' element={<CreditsScreen />} />
       </Routes>
     </div>
   );

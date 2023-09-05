@@ -1,0 +1,139 @@
+.credits__screen {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 10px;
+  margin: 50px auto;
+}
+.credits__screen h1{
+  text-transform: uppercase;
+  margin: auto;
+  text-align: center;
+  width: 90%;
+  border-bottom: 4px solid #ddd;
+  margin-bottom: 10px;
+}
+@media (max-width: 35em) {
+  .credits__screen {
+    display: block;
+  }
+}
+
+/* 
+* Crews
+*/
+.crew {
+  /* flex: 0.8; */
+}
+.crew .crew__buttons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.crew__buttons .btn {
+  flex-grow: 1;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 1vmax;
+}
+
+.crew__container,
+.crew__details {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  width: 100%;
+}
+.crew__container {
+  flex-direction: column;
+}
+.crew__details {
+  border-bottom: 2px solid #eee;
+  margin-bottom: 10px;
+}
+.crew__details h2 {
+  font-size: 1rem;
+}
+.crew__details .crew__icon {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.crew__details span {
+  background-color: red;
+  font-size: 8px;
+  padding: 2px;
+  border-radius: 50%;
+}
+
+
+/* Casts */
+
+.cast__container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.cast__details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cast__container .cast__image {
+  position: relative;
+  width: 85px;
+  height: 120px;
+  background: linear-gradient(to right, #888, #999);
+}
+.cast__image img {
+  width: 100%;
+  border-radius: 4px;
+  object-fit: contain;
+}
+.cast__image .cast__popularity {
+  position: absolute;
+  left: 5px;
+  bottom: 4px;
+  color: goldenrod;
+  font-weight: 500;
+}
+.cast__image .cast__popularity span {
+  background-color: red;
+  padding: 3px;
+  font-size: 10px;
+  border-radius: 50%;
+}
+.cast__details .cast__name {
+  margin-top: 5px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.cast__details .cast__char {
+  color: rgb(20, 135, 206);
+}
+
+@media (max-width: 55em) {
+  .cast__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 35em) {
+  .cast__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 20em) {
+  .cast__container {
+    display: block;
+  }
+}
+

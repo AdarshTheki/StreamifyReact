@@ -61,35 +61,40 @@ const Social = () => {
     };
   }, [path]);
 
-  if (loading && loading1) {
+  const Loading = () => {
     return (
-      <div style={{ background: "transparent", padding: "30px", maxWidth: "40vw", margin:'auto'}}>
-        <Skeleton width={300} height={30} />
+      <div style={{marginLeft:"2rem"}}>
+        <Skeleton width='20%' height={30} />
+        <Skeleton width='100%' height={10} />
+        <Skeleton width='70%' height={20} />
         <div style={{ display: "flex", gap: "20px", overflow: "hidden" }}>
-        <Skeleton width={40} height={40} style={{borderRadius:'50%'}} />
-        <Skeleton width={40} height={40} style={{borderRadius:'50%'}} />
-        <Skeleton width={40} height={40} style={{borderRadius:'50%'}} />
-        <Skeleton width={40} height={40} style={{borderRadius:'50%'}} />
+          <Skeleton width={40} height={40} style={{ borderRadius: "50%" }} />
+          <Skeleton width={40} height={40} style={{ borderRadius: "50%" }} />
+          <Skeleton width={40} height={40} style={{ borderRadius: "50%" }} />
+          <Skeleton width={40} height={40} style={{ borderRadius: "50%" }} />
         </div>
-        <br />
-        <div style={{ display: "flex", flexWrap:'wrap', gap: "20px", overflow: "hidden" }}>
-          <Skeleton width={100} height={30} />
-          <Skeleton width={100} height={30} />
-          <Skeleton width={100} height={30} />
-          <Skeleton width={100} height={30} />
-          <Skeleton width={100} height={30} />
-          <Skeleton width={100} height={30} />
-        </div>
+        <Skeleton width="100%" height={10} />
+        <Skeleton width="100%" height={20} />
+        <Skeleton width="50%" height={10} />
+        <Skeleton width="30%" height={10} />
+        <Skeleton width="80%" height={30} />
+        <Skeleton width="90%" height={10} />
+      </div>
+    );
+  };
+
+  if (loading && loading1) return <Loading />;
+
+  if (error) {
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+        <Loading />
       </div>
     );
   }
-
-  if (error) {
-    return <h1>Error: {error.message}</h1>;
-  }
-
   return (
-    <div>
+    <div className="Socials">
       <div className='social'>
         <h2 className='social__title'>Socials</h2>
         <div className='social__container'>
@@ -134,6 +139,7 @@ const Social = () => {
           Full Cast & Crew
         </NavLink>
       </div>
+      <div className="box-shadow"></div>
     </div>
   );
 };

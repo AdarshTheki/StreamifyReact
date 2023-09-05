@@ -9,9 +9,9 @@ function HomeScreen() {
     <div className='homeScreen'>
       <Nav />
       <Banner />
-      <Trending />
+      {/* <Trending /> */}
       <Movies />
-      <TVShow />
+      {/* <TVShow /> */}
     </div>
   );
 }

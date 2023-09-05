@@ -68,12 +68,8 @@ function Banner() {
         <Skeleton width='100%' height={30} />
         <Skeleton width='80%' height={20} />
         <Skeleton width='90%' height={30} />
-        <div style={{ display: "flex", gap: "5vw", margin: "30px auto" }}>
-          <Skeleton width={30} height={30} style={{ borderRadius: "50%" }} />
-          <Skeleton width={30} height={30} style={{ borderRadius: "50%" }} />
-          <Skeleton width={100} height={20} />
-          <Skeleton width={30} height={30} style={{ borderRadius: "50%" }} />
-          <Skeleton width={100} height={20} />
+        <div className="loading">
+          <h1 data-text="Loading...">Loading...</h1>
         </div>
         <Skeleton width='50%' height={10} />
         <Skeleton width='100%' height={20} />

@@ -4,6 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import requests from "../../request";
 import axios from "../../axios";
 import Skeleton from "react-loading-skeleton";
+import "./Details.css";
 
 const DetailContainer = () => {
   const [movie, setMovie] = useState(null);
@@ -59,16 +60,8 @@ const DetailContainer = () => {
 
   if (error) {
     return (
-      <div
-        style={{
-          position: "relative",
-          minHeight: "80vh",
-          background: "#ccc",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}>
-        <h1 style={{ fontSize: "3rem" }}>Error: {error.message}</h1>
+      <div className='loading' style={{ minHeight: "70vh" }}>
+        <h1 data-text='Somethings was wrong!...'>Somethings was wrong!...</h1>
       </div>
     );
   }
@@ -116,24 +109,24 @@ const DetailContainer = () => {
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie?.backdrop_path})`,
       }}
-      className='detailScreen'>
-      <div className='detailContainer'>
-        <NavLink to={homepage} target='__blank' className='img'>
+      className='details__main'>
+      <div className='details__container'>
+        <NavLink to={homepage} target='__blank' className='details__img'>
           <img
             src={"https://image.tmdb.org/t/p/w500/" + poster_path}
             alt={YourTitle || "image.org"}
             title='Official Website'
           />
         </NavLink>
-        <div className='details'>
-          <h1 className='title'>
+        <div className='details__detail'>
+          <h1 className='details__name'>
             {YourTitle || "NA"}
             <span> ({release_date?.substring(0, 4) || "NA"})</span>
           </h1>
-          <div className='desc'>
+          <div className='details__desc'>
             <p>Status: {status || "NA"}</p>
             <p>{YourDate.toDateString() || "NA"}</p>
-            <p>[{YourLanguage || "NA"}]</p>
+            <p>Language [{YourLanguage || "NA"}]</p>
             <p>
               &#9679;{" "}
               {genres?.map((e) => {
@@ -142,7 +135,7 @@ const DetailContainer = () => {
             </p>
             <p>
               &#9679; {(runtime / 60)?.toFixed(1).substring(0, 1)}h{" "}
-              {(runtime - 60).toFixed()}m
+              {(runtime - 60) - 60}m
             </p>
             <p>
               Rating{" "}
@@ -152,9 +145,8 @@ const DetailContainer = () => {
             </p>
           </div>
           <div className='icons'>
-            <button className='btn'>
-              <FaPlayCircle color='red' /> Play Tailer
-            </button>
+            <FaPlayCircle color='red' />
+            <button className='btn'>Play Tailer</button>
           </div>
           <p className='disc'>{overview}</p>
           <div className='price'>
@@ -162,7 +154,6 @@ const DetailContainer = () => {
             <span>Revenue: {CurrencyRevenue || "NA"}</span>
           </div>
         </div>
-        
       </div>
     </div>
   );

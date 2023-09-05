@@ -3,6 +3,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import axios from "../../axios";
 import requests from "../../request";
 import Skeleton from "react-loading-skeleton";
+import './Credits.css'
 
 const Cast = () => {
   const [credits, setCredits] = useState(null);
@@ -33,52 +34,61 @@ const Cast = () => {
     };
   }, [path]);
 
-  if (loading) {
+  const Loading = () => {
     return (
-      <div style={{ background: "#ddd", padding: "30px", maxWidth: "45vw" }}>
-        <Skeleton width={100} height={30} />
-        <br />
-        <div style={{ display: "flex", gap: "20px", overflow: "hidden" }}>
-          <Skeleton width={100} height={120} />
-          <Skeleton width={100} height={120} />
-          <Skeleton width={100} height={120} />
-          <Skeleton width={100} height={120} />
-          <Skeleton width={100} height={120} />
-          <Skeleton width={100} height={120} />
-        </div>
+      <div style={{ margin: "10px 2rem" }}>
+        <Skeleton width={200} height={30} />
+        <Skeleton width='100%' height={20} />
+        <Skeleton width='60%' height={10} />
+        <Skeleton width='60%' height={10} />
+        <Skeleton width='60%' height={10} />
+        <Skeleton width='60%' height={10} />
+        <Skeleton width='100%' height={5} />
+        <Skeleton width='90%' height={15} />
+        <Skeleton width='80%' height={25} />
+        <Skeleton width='100%' height={10} />
       </div>
     );
+  };
+
+  if (loading) {
+    return <Loading />;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return (
+      <div>
+        <p>Error: {error.message}</p>
+        <Loading />
+      </div>
+    );
   }
-
   return (
-    <div className='cast'>
+    <div className='credits__main'>
       <h2>Top Billed Cast</h2>
-      <div className='cast-container'>
+      <div className='credits__container'>
         {credits?.cast?.slice(0, 8)?.map((item) => {
           return (
-            <div key={item?.id} className='cast-card'>
-              <div className='cast-img'>
+            <div key={item?.id} className='credits__card'>
+              <div className='credits__img'>
                 <img
                   src={`https://image.tmdb.org/t/p/w200/${item?.profile_path}`}
                   alt=''
                   loading='lazy'
                 />
               </div>
-              <h2 id='cast-name'>{item.name}</h2>
-              <p id='cast-char'>{item?.character}</p>
+              <h2 className='credits__name'>{item.name}</h2>
+              <p className='credits__char'>{item?.character}</p>
             </div>
           );
         })}
-        <div className='cast-card inline-flex'>
+        <div className='credits__card inline-flex'>
           <NavLink to={`/credits/${path}`} className='_links'>
             Credits more details
           </NavLink>
         </div>
       </div>
+      <div className='box-shadow-credits'></div>
     </div>
   );
 };

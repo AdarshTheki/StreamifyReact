@@ -44,8 +44,17 @@ function Rows({ fetchUrl, show }) {
       </div>
     );
   }
+
+  if(isError){
+    return (
+      <div className='loading' style={{ minHeight: "300px" }}>
+        <h1 data-text='some Thing was wrang !...'>some Thing was wrang !...</h1>
+      </div>
+    );
+  }
+
   return (
-    <div className='row__container color-change-2x'>
+    <div className='row__container'>
       {movies?.map((movie) => {
         const currentDate = new Date(
           movie.release_date || movie.first_air_date
@@ -54,7 +63,7 @@ function Rows({ fetchUrl, show }) {
         return (
           <div key={movie?.id} className='row__post_container'>
             <NavLink to={`show/${show}/${movie?.id}`} className='row__poster'>
-              <Images imgUrl={movie?.poster_path} />
+              <Images imgUrl={movie?.poster_path || movie?.backdrop_path} />
             </NavLink>
             <div className='row_details'>
               <NavLink to={`show/${show}/${movie?.id}`} className='movie_title'>

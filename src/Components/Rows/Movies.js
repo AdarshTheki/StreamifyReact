@@ -21,28 +21,6 @@ const Movies = () => {
               </button>
             );
           })}
-          {/* <button
-            onClick={() => setMovie("upcoming")}
-            className={`trending__btn ${movie === "upcoming" && "isActive"}`}>
-            upcoming
-          </button>
-          <button
-            onClick={() => setMovie("now_playing")}
-            className={`trending__btn ${
-              movie === "now_playing" && "isActive"
-            }`}>
-            now playing
-          </button>
-          <button
-            onClick={() => setMovie("popular")}
-            className={`trending__btn ${movie === "popular" && "isActive"}`}>
-            popular
-          </button>
-          <button
-            onClick={() => setMovie("top_rated")}
-            className={`trending__btn ${movie === "top_rated" && "isActive"}`}>
-            top rated
-          </button> */}
         </div>
       </div>
       <div className='trending__row'>

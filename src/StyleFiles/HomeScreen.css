@@ -35,7 +35,7 @@
 }
 .trending__btn:hover,
 .isActive {
-  background-color:var(--first);
+  background-color: var(--first);
   color: var(--five);
 }
 
@@ -44,12 +44,12 @@
 }
 .trending__row .box-shadow {
   position: absolute;
-  width: 50px;
-  right: 0;
+  width: 30px;
   top: 0;
+  right: 0;
   bottom: 0;
   z-index: 1;
-  box-shadow: -20px 0px 3px -5px rgb(255, 255, 255, 0.7) inset;
+  background: linear-gradient(to right, transparent, #fff);
 }
 @media (max-width: 60em) {
   .trending__setting {

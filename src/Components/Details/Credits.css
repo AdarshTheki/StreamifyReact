@@ -1,0 +1,49 @@
+/* Cast container*/
+.credits__main {
+  overflow-y: hidden;
+  /* position: relative; */
+}
+.credits__main::-webkit-scrollbar {
+  height: 8px;
+}
+.credits__main::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.273);
+  border-radius: 100vmax;
+}
+.credits__container {
+  padding: 5px 0;
+  display: flex;
+  gap: 10px;
+}
+.credits__card {
+  border-radius: 5px;
+  text-align: center;
+  width: 150px;
+  min-width: 150px;
+  box-shadow: 0 1px 2px 2px rgba(0, 0, 0, 0.2);
+}
+.credits__card .credits__img {
+  width: 150px;
+}
+.credits__img img {
+  border-radius: 5px;
+  width: 100%;
+  object-fit: contain;
+}
+.credits__name {
+  font-size: 18px;
+}
+.credits__char {
+  font-size: 12px;
+}
+
+@media (max-width: 35em) {
+  .box-shadow-credits {
+    position: absolute;
+    width: 30px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, transparent, #fff);
+  }
+}

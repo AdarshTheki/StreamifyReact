@@ -3,7 +3,7 @@ import lazy from "../../assets/lazy.jpg";
 
 const Images = ({ imgUrl }) => {
   const imgURL = `https://image.tmdb.org/t/p/w200/${imgUrl}`; // w500/original
-  // const originalUrl = `https://image.tmdb.org/t/p/w500/${imgUrl}`;
+  // const lazy = `https://image.tmdb.org/t/p/h100/${imgUrl}`;
 
   const [imgSrc, setSrc] = useState(lazy || imgURL);
 
@@ -15,7 +15,7 @@ const Images = ({ imgUrl }) => {
     };
   }, [imgURL]);
 
-  return <img src={imgSrc} alt='img' loading='lazy' />;
+  return <img src={imgSrc} placeholder="blur" alt='img' loading='lazy' />;
 };
 
 export default Images;
