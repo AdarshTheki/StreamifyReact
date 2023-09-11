@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "../axios";
 import requests from "../request";
 import Skeleton from "react-loading-skeleton";
-import { AiFillLike } from "react-icons/ai";
+import { FaStar, FaPlay, FaPlus } from "react-icons/fa";
+import "./Banner.css";
 
 function Banner() {
   const [movie, setMovie] = useState([]);
@@ -48,12 +49,11 @@ function Banner() {
     };
   }, [originalUrl]);
 
-  const rating = (star) =>
-    "★★★★★☆☆☆☆☆".slice(
-      Math.round((10 - star) / 2),
-      Math.round((20 - star) / 2)
-    );
   const releaseDate = new Date(movie?.release_date);
+  const today = new Date();
+  const daysDifference = Math.floor(
+    (today - releaseDate) / (1000 * 60 * 60 * 24)
+  );
 
   if (isLoading) {
     return (
@@ -68,8 +68,8 @@ function Banner() {
         <Skeleton width='100%' height={30} />
         <Skeleton width='80%' height={20} />
         <Skeleton width='90%' height={30} />
-        <div className="loading">
-          <h1 data-text="Loading...">Loading...</h1>
+        <div className='loading'>
+          <h1 data-text='Loading...'>Loading...</h1>
         </div>
         <Skeleton width='50%' height={10} />
         <Skeleton width='100%' height={20} />
@@ -82,6 +82,8 @@ function Banner() {
       </div>
     );
   }
+
+  // console.log(movie);
 
   return (
     <header
@@ -98,22 +100,40 @@ function Banner() {
         </h1>
       )}
       <div className='banner__contents'>
+        <p className='release'>
+          release: {releaseDate?.toDateString() || "NA"}
+        </p>
         <h1 className='banner__title'>
           {movie?.title || movie?.name || movie?.original_name}
         </h1>
         <div className='banner__detail'>
-          <span style={{ color: "gold", fontSize: "1.2rem" }}>
-            {rating(movie?.vote_average) || "NA"}
-          </span>
-          <span>Release on {releaseDate?.toDateString() || "NA"}</span>
-          <span>
-            <AiFillLike color='red' className='icon' />
-            {movie?.popularity?.toFixed() || "NA"}
-          </span>
+          <p className='rating'>
+            Rating: <FaStar color='yellow' fontSize={20} />
+            {movie?.vote_average || "NA"}
+          </p>
+
+          <p className='days-left'>
+            <span>{daysDifference || "NA"}</span> days left
+          </p>
+
+          <p className='language'>
+            Language: [<span>{movie?.original_language || "NA"}</span>]
+          </p>
+          <p className='popularity'>
+            popularity : {movie?.popularity.toFixed(1)}K
+          </p>
         </div>
-        <h1 className='banner__description'>
+        <h2 className='banner__description'>
           {truncate(movie?.overview, 200)}
-        </h1>
+        </h2>
+        <div className='banner__buttons'>
+          <button className='btn red-btn'>
+            <FaPlay color='white' /> Play
+          </button>
+          <button className='btn black-btn'>
+            <FaPlus color='white' /> Watch Lists
+          </button>
+        </div>
       </div>
       <div className='banner__gradient'></div>
     </header>

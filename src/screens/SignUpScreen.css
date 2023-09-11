@@ -39,7 +39,7 @@
   outline-offset: 3px;
 }
 
-button[type="submit"] {
+.signup button[type="submit"] {
   font-size: 1rem;
   font-weight: 600;
   background: #ff1c0b;
@@ -48,7 +48,7 @@ button[type="submit"] {
   border-radius: 5px;
   cursor: pointer;
 }
-button[type="submit"]:hover {
+.signup button[type="submit"]:hover {
   background: #b61509;
 }
 
@@ -57,7 +57,7 @@ button[type="submit"]:hover {
   justify-content: center;
   padding-bottom: 20px;
 }
-button {
+.signup button {
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
@@ -65,7 +65,7 @@ button {
   border: none;
   cursor: pointer;
 }
-button:hover {
+.signup button:hover {
   opacity: 0.7;
 }
 

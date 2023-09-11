@@ -1,99 +1,48 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/netflix_logo.png";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { FaUserEdit } from "react-icons/fa";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import female_avatar from "../assets/female_avatar.svg";
+import "./Nav.css";
+import { FaBars } from "react-icons/fa";
+import { AiFillCloseCircle } from "react-icons/ai";
 
-function Nav() {
-  const [show, handleShow] = useState(false);
+const Nav = () => {
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const profile = useSelector((state) => state.user);
-  const { user } = profile;
-
-  const transitionNavBar = () => {
-    if (window.scrollY > 50) {
-      handleShow(true);
-    } else {
-      handleShow(false);
-    }
-  };
   useEffect(() => {
-    window.addEventListener("scroll", transitionNavBar);
-    return () => window.addEventListener("scroll", transitionNavBar);
+    const changeWidth = () => {
+      setScreenWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", changeWidth);
+    return () => window.removeEventListener("resize", changeWidth);
   }, []);
 
   return (
-    <NavContainer>
-      <div className={`nav  ${show && "nav__black"}`}>
-        <div className='nav__contents'>
-          <NavLink to='/'>
-            <img src={logo} alt='Netflix_logo' />
-          </NavLink>
-          <NavLink to='profile' className='links'>
-            {!user ? (
-              <>
-                <FaUserEdit className='icon' />
-                <span>OwnerName</span>
-              </>
-            ) : (
-              <>
-                <img src={user?.photoURL} alt='owner' className="icon"/>
-                <span>{user?.displayName?.slice(0, 15)}</span>
-              </>
-            )}
-          </NavLink>
-        </div>
-      </div>
-    </NavContainer>
+    <div className='nav'>
+      <NavLink to='/' className='nav__logo'>ReactStream</NavLink>
+      {(toggleMenu || screenWidth > 500) && (
+        <ul className={`nav__list ${!toggleMenu && "display-none"}`}>
+          <NavLink to="/movie" className='nav__items'>movie</NavLink>
+          <NavLink to="/tv" className='nav__items'>tv show</NavLink>
+          <NavLink to="/people" className='nav__items'>people</NavLink>
+          <NavLink to="/contact" className='nav__items'>Contact</NavLink>
+          <NavLink to="/login" className='nav__items'>Login</NavLink>
+        </ul>
+      )}
+      {toggleMenu ? (
+        <AiFillCloseCircle
+          onClick={() => setToggleMenu(!toggleMenu)}
+          className='nav__btn'
+        />
+      ) : (
+        <FaBars
+          onClick={() => setToggleMenu(!toggleMenu)}
+          className='nav__btn'
+        />
+      )}
+    </div>
   );
-}
+};
+
 export default Nav;
-
-const NavContainer = styled.div`
-  .nav {
-    position: fixed;
-    z-index: 5;
-    top: 0;
-    width: 100%;
-    height: 60px;
-    transition-timing-function: ease-in;
-    transition: all 0.5s;
-    background-color: transparent;
-  }
-  .nav__black {
-    background-color: #032541;
-  }
-  .nav__contents {
-    margin: auto;
-    width: 85vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    img {
-      height: 50px;
-    }
-
-    .links {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      color: red;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .icon {
-      font-size: 1rem;
-      width: 50px;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 5px;
-    }
-    span {
-    }
-  }
-`;
