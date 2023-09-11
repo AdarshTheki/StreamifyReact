@@ -1,0 +1,121 @@
+.details__main {
+  position: relative;
+  /* max-width: 100%; */
+  min-height: calc(140vh - 25vw);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: auto;
+  /* object-fit: contain; */
+  /* overflow: hidden; */
+}
+.details__main::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgb(255, 255, 255) 0%,
+    rgba(0, 0, 0, 0.6) 2%
+  );
+}
+.details__container {
+  width: 90vw;
+  margin: 0 auto;
+  position: relative;
+  top: 80px;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
+
+.details__container .details__img {
+  flex: 0.3;
+}
+.details__container .details__img img {
+  display: block;
+  border-radius: 1vmax;
+  margin: 0 auto;
+  width: 23vw;
+}
+.details__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 0.7;
+  color: #fff;
+}
+.details__detail .details__name {
+  font-size: calc(10px + 4vw);
+  line-height: 0.9;
+}
+.details__name span {
+  color: rgb(150, 150, 150);
+  font-weight: 400;
+  font-size: calc(15px + 2vw);
+}
+.details__desc {
+  /* display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  column-gap: 10px; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  font-size: calc(14px + 0.5vw);
+}
+@media (max-width: 50em) {
+  .details__container {
+    gap: 10px;
+  }
+  .details__desc {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+  }
+}
+@media (max-width: 40em) {
+  .details__name{
+    margin-top: 15px;
+  }
+  .details__container {
+    display: block;
+  }
+  .details__container .details__img img{
+    display: block;
+    width: 150px;
+    object-fit: contain;
+  }
+  .details__detail{
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.details__detail .icons {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 1.8rem;
+}
+.details__detail .btn {
+  border: none;
+  color: #fff;
+  transition: transform 0.3s ease-out;
+}
+.details__detail .btn:hover {
+  transform: scale(0.9);
+}
+.details__detail .disc {
+  font-size: calc(12px + 0.5vw);
+  font-weight: 300;
+  width: 90%;
+  color: #e4e4e4;
+}
+.details__detail .price {
+  font-size: calc(14px + 0.5vw);
+}
+.details__detail .price span {
+  margin-right: 20px;
+}

@@ -36,6 +36,9 @@ const requests = {
   tv_top_rated: `/tv/top_rated?api_key=${API_KEY}&language=en-US`,
   tv_detail: `/tv/tv_id?api_key=${API_KEY}&language=en-US`,
 
+  // Search
+  search: `https://api.themoviedb.org/3/search/movie?query=iron%20man?api_key=${API_KEY}&include_adult=false&language=en-US&page=1`,
+
   // MOVIE LISTS
   // movie/now_playing, movie/popular, movie/top_rated, movie/upcoming,
   // Detail = movie/movie_id, movie/movie_id/external_ids, movie/movie_id/credits,
