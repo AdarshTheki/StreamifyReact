@@ -10,9 +10,11 @@ import { useEffect } from "react";
 import { auth } from "./firebase";
 import { login } from "./redux/userSlice";
 import CreditsScreen from "./screens/CreditsScreen";
+import { fetchUpComing } from "./redux/bannerSlice";
 
 function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     const unSubscribed = () => {
       auth.onAuthStateChanged((userAuth) => {
@@ -35,9 +37,13 @@ function App() {
     unSubscribed();
   }, [dispatch]);
 
+    useEffect(() => {
+      dispatch(fetchUpComing());
+    }, [dispatch]);
+
   return (
     <div>
-      <Nav />
+      {/* <Nav /> */}
       <Routes>
         <Route path='/' element={<HomeScreen />} />
         <Route path='login' element={<SignUpScreen />} />

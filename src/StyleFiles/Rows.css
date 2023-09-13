@@ -1,20 +1,36 @@
-.row__container {
+:root {
+  --black-900: rgb(8, 8, 10);
+  --black-800: rgb(13, 12, 15);
+  --black-700: rgb(30, 30, 30);
+  --black-600: rgb(40, 38, 45);
+  --gray: rgb(156, 164, 171);
+  --white: rgb(255, 255, 255);
+  --green: rgb(0, 146, 93);
+  --red: rgb(235, 61, 93);
+  --yellow: rgb(255, 205, 25);
+}
+
+.grid {
+  padding: 10px;
+  display: grid;
+  gap: 10px;
+  row-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  justify-content: space-between;
+}
+.flex {
   display: flex;
-  /* gap: 15px; */
-  overflow: hidden;
-  overflow-x: auto;
+  overflow: auto;
   scrollbar-width: thin;
   padding-top: 10px;
 }
-
 .row__container::-webkit-scrollbar {
   height: 8px;
 }
 .row__container::-webkit-scrollbar-thumb {
-  background: rgb(221, 221, 221);
+  background: var(--black-700);
   border-radius: 100vmax;
 }
-
 .row__post_container {
   display: flex;
   flex-direction: column;
@@ -24,6 +40,7 @@
   z-index: 1;
   overflow: hidden;
   border-radius: 1vmax;
+  margin-inline: auto;
   cursor: pointer;
 }
 .row__poster img {
@@ -36,45 +53,22 @@
   scale: 1.1;
 }
 .row_details {
-  color: #333;
   text-align: center;
 }
 .movie_title {
   text-decoration: none;
-  color: #222;
+  color: var(--white);
   font-weight: 500;
   font-size: 18px;
   transition: all 0.2s ease-out;
 }
 .movie_title:active,
 .movie_title:hover {
-  color: var(--four);
+  color: var(--green);
 }
 
 .movie_release_date {
   text-transform: capitalize;
-  color: #888;
+  color: var(--gray);
   font-size: 14px;
-}
-@media (max-width: 60em) {
-  /* .row__poster img {
-    height: 160px;
-  }
-  .movie_title {
-    font-size: 14px;
-  }
-  .movie_release_date {
-    font-size: 10px;
-  } */
-}
-@media (max-width: 50em) {
-  /* .row__poster img {
-    height: 130px;
-  }
-  .movie_title {
-    font-size: 12px;
-  }
-  .movie_release_date {
-    font-size: 8px;
-  } */
 }

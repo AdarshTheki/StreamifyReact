@@ -1,3 +1,15 @@
+:root {
+  --black-900: rgb(8, 8, 10);
+  --black-800: rgb(13, 12, 15);
+  --black-700: rgb(30, 30, 30);
+  --black-600: rgb(40, 38, 45);
+  --gray: rgb(156, 164, 171);
+  --white: rgb(255, 255, 255);
+  --green: rgb(0, 146, 93);
+  --red: rgb(235, 61, 93);
+  --yellow: rgb(255, 205, 25);
+}
+
 .trending {
   margin: 10px auto;
 }
@@ -7,7 +19,7 @@
   gap: 20px;
 }
 .trending__title {
-  color: #222;
+  color: var(--white);
   text-transform: uppercase;
   margin: 5px 10px;
 }
@@ -15,30 +27,48 @@
 .trending__buttons {
   display: flex;
   align-items: center;
-  gap: 1px;
-  border: 2px solid var(--four);
+  border: 1px solid var(--green);
   border-radius: 100vmax;
   overflow: hidden;
 }
 
 .trending__btn {
+  display: block;
+  height: 100%;
   text-transform: capitalize;
   font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
   padding: 5px 20px;
-  /* border-radius: 100vmax; */
-  color: #444;
+  color: var(--white);
   border: none;
   background-color: transparent;
   transition: background-color 0.3s ease-in-out;
 }
 .trending__btn:hover,
 .isActive {
-  background-color: var(--first);
-  color: var(--five);
+  background-color: var(--green);
 }
 
+/* Toggle Button */
+.toggle__btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--gray);
+  color: var(--green);
+  background-color: transparent;
+  padding: 4px;
+  border-radius: 4px;
+  transition: 0.3s ease-in-out;
+}
+.toggle__btn:hover,
+.toggle__btn.isActive {
+  color: var(--white);
+  background: var(--green);
+}
+
+/* treading row */
 .trending__row {
   position: relative;
 }
@@ -49,25 +79,15 @@
   right: 0;
   bottom: 0;
   z-index: 1;
-  background: linear-gradient(to right, transparent, #fff);
+  background: linear-gradient(to right, transparent, var(--black-900));
 }
-@media (max-width: 60em) {
+
+@media (max-width: 600px) {
   .trending__setting {
-    gap: 10px;
+    flex-direction: column;
+    gap: 5px;
   }
-  .trending__title {
-    font-size: 16px;
-  }
-  .trending__btn {
-    font-size: 14px;
-    padding: 3px 8px;
-  }
-}
-@media (max-width: 40em) {
-  .trending__title {
-    font-size: 12px;
-  }
-  .trending__btn {
-    font-size: 10px;
+  .trending__buttons {
+    width: 95vw;
   }
 }

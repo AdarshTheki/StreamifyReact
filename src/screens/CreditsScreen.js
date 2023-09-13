@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import requests from "../request";
-import Crews from "../Components/Crews";
-import Casts from "../Components/Casts";
 import "./CreditsScreen.css";
+import Crew from "./Crew";
+import Cast from "./Cast";
 
 const CreditsScreen = () => {
   const location = useLocation();
   const path = location.pathname.replace("/credits/", "").split("/");
   const show = path[0];
   const id = path[1];
-  const [isData, setIsData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [creditsData, setCreditsData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
@@ -22,21 +22,21 @@ const CreditsScreen = () => {
         );
         if (!res.ok) {
           setIsError(true);
-          setIsLoading(false);
+          setLoading(false);
           return;
         }
         const data = await res.json();
-        setIsData(data);
+        setCreditsData(data);
       } catch (error) {
         setIsError(true);
         console.log(error.message);
       }
-      setIsLoading(false);
+      setLoading(false);
     };
     fetchCredits();
   }, [id, show]);
 
-  if (isLoading) {
+  if (loading) {
     return (
       <div className='loading' style={{ minHeight: "80vh", fontSize: "2rem" }}>
         <h1 data-text='Loading...'>Loading...</h1>
@@ -51,16 +51,24 @@ const CreditsScreen = () => {
       </div>
     );
   }
-
+  console.log(creditsData);
   return (
     <div className='credits__screen max-width'>
       <div>
-        <h1>Casts</h1>
-        <Casts casts={isData.cast} />
+        <h1>Full Casts</h1>
+        <div className='credits__cast'>
+          {creditsData?.cast.map((cast) => (
+            <Cast key={cast?.credit_id} {...cast} />
+          ))}
+        </div>
       </div>
       <div>
-        <h1>Crews</h1>
-        <Crews crews={isData.crew} />
+        <h1>Full Crews</h1>
+        <div className='credits__crew'>
+          {creditsData?.crew.map((crew) => (
+            <Crew key={crew?.credit_id} {...crew} />
+          ))}
+        </div>
       </div>
     </div>
   );

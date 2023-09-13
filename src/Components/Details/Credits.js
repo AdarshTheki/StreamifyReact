@@ -3,7 +3,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import axios from "../../axios";
 import requests from "../../request";
 import Skeleton from "react-loading-skeleton";
-import './Credits.css'
+import lazy from "../../assets/user.png";
+import "./Credits.css";
 
 const Cast = () => {
   const [credits, setCredits] = useState(null);
@@ -71,14 +72,14 @@ const Cast = () => {
           return (
             <div key={item?.id} className='credits__card'>
               <div className='credits__img'>
-                <img
-                  src={`https://image.tmdb.org/t/p/w200/${item?.profile_path}`}
-                  alt=''
-                  loading='lazy'
+                <ProgressiveImage
+                  imgUrl={`https://image.tmdb.org/t/p/w200/${item?.profile_path}`}
                 />
               </div>
-              <h2 className='credits__name'>{item.name}</h2>
-              <p className='credits__char'>{item?.character}</p>
+              <div>
+                <h2 className='credits__name'>{item.name}</h2>
+                <p className='credits__char'>{item?.character}</p>
+              </div>
             </div>
           );
         })}
@@ -94,3 +95,18 @@ const Cast = () => {
 };
 
 export default Cast;
+
+const ProgressiveImage = ({ imgUrl }) => {
+  const [imgSrc, setSrcImg] = useState(lazy || imgUrl);
+  const customClass =
+    lazy && imgUrl === lazy ? "loading-image" : "loaded-image";
+  useEffect(() => {
+    const img = new Image();
+    img.src = imgUrl;
+    img.onload = () => {
+      setSrcImg(imgUrl);
+    };
+  }, [imgUrl]);
+
+  return <img src={imgSrc} alt='' className={customClass} />;
+};

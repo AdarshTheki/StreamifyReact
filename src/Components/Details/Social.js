@@ -8,6 +8,7 @@ import {
   FaWikipediaW,
 } from "react-icons/fa";
 import Skeleton from "react-loading-skeleton";
+import "./Social.css";
 import { NavLink, useLocation } from "react-router-dom";
 
 const Social = () => {
@@ -63,7 +64,7 @@ const Social = () => {
 
   const Loading = () => {
     return (
-      <div style={{marginLeft:"2rem"}}>
+      <div style={{ marginLeft: "2rem" }}>
         <Skeleton width='20%' height={30} />
         <Skeleton width='100%' height={10} />
         <Skeleton width='70%' height={20} />
@@ -73,12 +74,12 @@ const Social = () => {
           <Skeleton width={40} height={40} style={{ borderRadius: "50%" }} />
           <Skeleton width={40} height={40} style={{ borderRadius: "50%" }} />
         </div>
-        <Skeleton width="100%" height={10} />
-        <Skeleton width="100%" height={20} />
-        <Skeleton width="50%" height={10} />
-        <Skeleton width="30%" height={10} />
-        <Skeleton width="80%" height={30} />
-        <Skeleton width="90%" height={10} />
+        <Skeleton width='100%' height={10} />
+        <Skeleton width='100%' height={20} />
+        <Skeleton width='50%' height={10} />
+        <Skeleton width='30%' height={10} />
+        <Skeleton width='80%' height={30} />
+        <Skeleton width='90%' height={10} />
       </div>
     );
   };
@@ -94,33 +95,33 @@ const Social = () => {
     );
   }
   return (
-    <div className="Socials">
+    <div className='Socials'>
       <div className='social'>
         <h2 className='social__title'>Socials</h2>
         <div className='social__container'>
           <NavLink
-            className='icon'
+            className='icons'
             target='__blank'
             to={`https://www.facebook.com/${ids?.facebook_id}`}>
-            <FaFacebook color='#4867AA' fontSize={30} />
+            <FaFacebook className='icon' color='#4867AA' fontSize={30} />
           </NavLink>
           <NavLink
-            className='icon'
+            className='icons'
             target='_blank'
             to={`https://www.instagram.com/${ids?.instagram_id}`}>
-            <FaInstagramSquare color='#F506A8' fontSize={30} />
+            <FaInstagramSquare className='icon' color='#F506A8' fontSize={30} />
           </NavLink>
           <NavLink
-            className='icon'
+            className='icons'
             target='_blank'
             to={`https://twitter.com/${ids?.twitter_id}`}>
-            <FaTwitter color='#1DA1F2' fontSize={30} />
+            <FaTwitter className='icon' color='#1DA1F2' fontSize={30} />
           </NavLink>
           <NavLink
-            className='icon'
+            className='icons'
             target='_blank'
             to={`https://www.wikidata.org/wiki/${ids?.wikidata_id}`}>
-            <FaWikipediaW color='black' fontSize={30} />
+            <FaWikipediaW className='icon' color='black' fontSize={30} />
           </NavLink>
         </div>
       </div>
@@ -139,7 +140,7 @@ const Social = () => {
           Full Cast & Crew
         </NavLink>
       </div>
-      <div className="box-shadow"></div>
+      <div className='box-shadow'></div>
     </div>
   );
 };

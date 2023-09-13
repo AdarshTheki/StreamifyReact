@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import requests from "../../request";
 import Rows from "./Rows";
+import { LuLayoutGrid } from "react-icons/lu";
 
 const Trending = () => {
   const [date, setDate] = useState("day");
   const [show, setShow] = useState("movie");
+  const [toggle, setToggle] = useState(false);
 
   return (
     <div className='trending'>
@@ -14,7 +16,7 @@ const Trending = () => {
           <button
             onClick={() => setDate("day")}
             className={`trending__btn ${date === "day" && "isActive"}`}>
-            Today
+            Todays
           </button>
           <button
             onClick={() => setDate("week")}
@@ -32,11 +34,17 @@ const Trending = () => {
             TV
           </button>
         </div>
+        <button
+          onClick={() => setToggle(!toggle)}
+          className={`toggle__btn ${toggle && "isActive"}`}>
+          <LuLayoutGrid fontSize={20} />
+        </button>
       </div>
       <div className='trending__row'>
         <Rows
           fetchUrl={`/trending/${show}/${date}` + requests.api_link}
           show={show}
+          toggle={toggle}
         />
         <div className='box-shadow'></div>
       </div>

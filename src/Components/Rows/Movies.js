@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import requests from "../../request";
 import Rows from "./Rows";
+import { LuLayoutGrid } from "react-icons/lu";
 
 const Movies = () => {
+  const [toggle, setToggle] = useState(false);
   const movies = ["upcoming", "now_playing", "popular", "top_rated"];
   const [movie, setMovie] = useState("upcoming");
 
@@ -22,9 +24,18 @@ const Movies = () => {
             );
           })}
         </div>
+        <button
+          onClick={() => setToggle(!toggle)}
+          className={`toggle__btn ${toggle && "isActive"}`}>
+          <LuLayoutGrid fontSize={20} />
+        </button>
       </div>
       <div className='trending__row'>
-        <Rows fetchUrl={`/movie/${movie}` + requests.api_link} show="movie" />
+        <Rows
+          fetchUrl={`/movie/${movie}` + requests.api_link}
+          show='movie'
+          toggle={toggle}
+        />
         <div className='box-shadow'></div>
       </div>
     </div>

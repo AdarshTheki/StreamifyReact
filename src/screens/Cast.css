@@ -1,0 +1,38 @@
+.profile-image {
+  border: 2px solid var(--green);
+  background-color: var(--black-700);
+  width: 150px;
+  height: 220px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 1vmax;
+  position: relative;
+  cursor: pointer;
+  transition: 0.5s ease-in-out;
+}
+.profile-image:hover {
+  transform: scale(0.95);
+}
+.profile-image .cast-names {
+  width: 80%;
+  position: absolute;
+  left: 5%;
+  bottom: 40px;
+  text-decoration: none;
+  color: var(--white);
+  text-align: center;
+  font-weight: 600;
+  font-size: 24px;
+  transition: 0.3s ease-out;
+}
+.profile-image .cast-names:hover {
+  color: var(--red);
+}
+.cast-popularity {
+  position: absolute;
+  left: 25%;
+  bottom: 10px;
+  font-weight: 600;
+  color: var(--red);
+}

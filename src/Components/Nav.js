@@ -21,26 +21,8 @@ const Nav = () => {
   return (
     <div className='nav'>
       <NavLink to='/' className='nav__logo'>ReactStream</NavLink>
-      {(toggleMenu || screenWidth > 500) && (
-        <ul className={`nav__list ${!toggleMenu && "display-none"}`}>
-          <NavLink to="/movie" className='nav__items'>movie</NavLink>
-          <NavLink to="/tv" className='nav__items'>tv show</NavLink>
-          <NavLink to="/people" className='nav__items'>people</NavLink>
-          <NavLink to="/contact" className='nav__items'>Contact</NavLink>
-          <NavLink to="/login" className='nav__items'>Login</NavLink>
-        </ul>
-      )}
-      {toggleMenu ? (
-        <AiFillCloseCircle
-          onClick={() => setToggleMenu(!toggleMenu)}
-          className='nav__btn'
-        />
-      ) : (
-        <FaBars
-          onClick={() => setToggleMenu(!toggleMenu)}
-          className='nav__btn'
-        />
-      )}
+      
+      
     </div>
   );
 };
