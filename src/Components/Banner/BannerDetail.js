@@ -47,7 +47,7 @@ const BannerDetail = ({
         </h2>
         <div className='banner__buttons'>
           <button className='btn red-btn'>
-            <FaPlay color='white' /> Play
+            <FaPlay color='white' /> Play Now
           </button>
           <button className='btn black-btn'>
             <FaPlus color='white' /> Watch Lists

@@ -1,9 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
 @import "./StyleFiles/LoginScreen.css";
-@import "./StyleFiles/Rows.css";
 @import "./StyleFiles/DetailScreen.css";
-@import "./StyleFiles/HomeScreen.css";
 
 * {
   margin: 0;
@@ -27,7 +25,8 @@ body {
   font-family: "Roboto", sans-serif;
   background-color: var(--black-800);
   color: var(--white);
-  min-height: 200vh;
+  scroll-behavior: smooth;
+  min-height: 100vh;
 }
 .inline-flex {
   display: inline-flex;

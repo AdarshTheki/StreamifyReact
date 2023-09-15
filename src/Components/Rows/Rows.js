@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import axios from "../../axios";
 import Skeleton from "react-loading-skeleton";
-import RowDetail from "./RowDetail";
+import Row from "./Row";
+import { fetchDataFromAPI } from "../../API";
+import "./Rows.css";
 
 function Rows({ fetchUrl, show, toggle }) {
   const [movies, setMovies] = useState([]);
@@ -9,22 +10,22 @@ function Rows({ fetchUrl, show, toggle }) {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const getData = await axios.get(fetchUrl);
-        if (getData.status !== 200) {
-          setIsError(true);
-          return;
-        } else {
-          setMovies(getData.data.results);
-          setLoading(false);
-        }
-      } catch (error) {
-        console.log(error.message);
-      }
-    }
-    fetchData();
+    fetchMultipleApi();
   }, [fetchUrl]);
+
+  const fetchMultipleApi = async () => {
+    await fetchDataFromAPI(fetchUrl)
+      .then((data) => {
+        setMovies(data.results);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setIsError(true);
+        setLoading(false);
+      });
+  };
+
+  console.log(movies);
 
   if (isLoading) {
     return (
@@ -55,7 +56,7 @@ function Rows({ fetchUrl, show, toggle }) {
   return (
     <div className={`row__container ${toggle ? "grid" : "flex"}`}>
       {movies?.map((movie) => (
-        <RowDetail key={movie.id} {...movie} show={show} />
+        <Row key={movie.id} {...movie} show={show} />
       ))}
     </div>
   );

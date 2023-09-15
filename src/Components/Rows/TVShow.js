@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import requests from "../../request";
 import Rows from "./Rows";
 import { LuLayoutGrid } from "react-icons/lu";
 
@@ -32,7 +31,7 @@ const TVShow = () => {
       </div>
       <div className='trending__row'>
         <Rows
-          fetchUrl={`/tv/${tvShow}` + requests.api_link}
+          fetchUrl={`/tv/${tvShow}`}
           show='tv'
           toggle={toggle}
         />

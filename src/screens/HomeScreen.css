@@ -27,19 +27,17 @@
 .trending__buttons {
   display: flex;
   align-items: center;
-  border: 1px solid var(--green);
+  border: 1px solid var(--white);
   border-radius: 100vmax;
   overflow: hidden;
 }
 
 .trending__btn {
-  display: block;
   height: 100%;
   text-transform: capitalize;
-  font-weight: 700;
   font-size: 1rem;
   cursor: pointer;
-  padding: 5px 20px;
+  padding: 5px 15px;
   color: var(--white);
   border: none;
   background-color: transparent;
@@ -47,7 +45,7 @@
 }
 .trending__btn:hover,
 .isActive {
-  background-color: var(--green);
+  background-color: var(--red);
 }
 
 /* Toggle Button */
@@ -55,8 +53,8 @@
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  border: 1px solid var(--gray);
-  color: var(--green);
+  border: 1px solid var(--white);
+  color: var(--red);
   background-color: transparent;
   padding: 4px;
   border-radius: 4px;
@@ -65,7 +63,7 @@
 .toggle__btn:hover,
 .toggle__btn.isActive {
   color: var(--white);
-  background: var(--green);
+  background: var(--red);
 }
 
 /* treading row */

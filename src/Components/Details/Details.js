@@ -1,75 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaPlayCircle } from "react-icons/fa";
 import { NavLink, useLocation } from "react-router-dom";
-import requests from "../../request";
-import axios from "../../axios";
 import Skeleton from "react-loading-skeleton";
 import lazy from "../../assets/image@4x.png";
 import "./Details.css";
+import useFetch from "../../hooks/useFetch";
+import dayjs from "dayjs";
+import Wrapper from "../Wrapper/Wrapper";
 
 const DetailContainer = () => {
-  const [movie, setMovie] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   const location = useLocation();
-  const path = location.pathname.replace("/show/", "");
+  const path = location.pathname.replace("/show", "");
 
-  useEffect(() => {
-    let isMounted = true;
-    axios
-      .get(path + requests.api_link)
-      .then((res) => {
-        if (isMounted) {
-          setMovie(res.data);
-          setLoading(false);
-        }
-      })
-      .catch((err) => {
-        if (isMounted) {
-          setError(err);
-          setLoading(false);
-        }
-      });
-    return () => {
-      isMounted = false;
-    };
-  }, [path]);
-
-  console.log(movie);
+  const { data, loading, error } = useFetch(path);
 
   if (loading) {
     return (
-      <div
-        style={{ position: "relative", minHeight: "80vh", background: "#ccc" }}>
-        <div
-          className='detailContainer'
-          style={{ margin: "auto", maxWidth: "90vw" }}>
-          <div className='img'>
-            <Skeleton width='80%' height={350} />
-          </div>
-          <div className='details'>
-            <Skeleton width='100%' height={80} />
-            <Skeleton width='100%' height={50} />
-            <div>
-              <Skeleton width='80%' height={50} count={3} />
-            </div>
-            <Skeleton width='50%' height={30} />
-          </div>
-        </div>
+      <div style={{ padding: "8rem 0", textAlign: "center" }}>
+        <h1>Loading.... {error}</h1>
       </div>
     );
   }
 
-  if (error) {
-    return (
-      <div className='loading' style={{ minHeight: "70vh" }}>
-        <h1 data-text='Somethings was wrong!...'>Somethings was wrong!...</h1>
-      </div>
-    );
-  }
-
-  return <Movies key={movie?.id} {...movie} />;
+  return <Movies key={data?.id} {...data} />;
 };
 
 export default DetailContainer;
@@ -94,15 +47,8 @@ const Movies = ({
   revenue,
   backdrop_path,
 }) => {
-  const YourDate = new Date(release_date || first_air_date);
   const YourTitle = title || original_title || original_name || name;
   const YourLanguage = origin_country || original_language;
-  const rating = (star) =>
-    "★★★★★☆☆☆☆☆".slice(
-      Math.round((10 - star) / 2),
-      Math.round((20 - star) / 2)
-    );
-
   const CurrencyBudget = budget?.toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
@@ -132,34 +78,39 @@ const Movies = ({
         <div className='details__detail'>
           <h1 className='details__name'>
             {YourTitle || "NA"}
-            <span> ({release_date?.substring(0, 4) || "NA"})</span>
+            <span>
+              ({dayjs(release_date || first_air_date).format("YYYY")})
+            </span>
           </h1>
           <div className='details__desc'>
             <p>Status: {status || "NA"}</p>
-            <p>{YourDate.toDateString() || "NA"}</p>
-            <p>Language [{YourLanguage || "NA"}]</p>
+            <p>{dayjs(release_date || first_air_date).format("DD MMM YYYY")}</p>
+            <p>Language: [{YourLanguage || "NA"}]</p>
             <p>
               &#9679;{" "}
               {genres?.map((e) => {
                 return <span key={e?.id}>{e?.name || "NA"}, </span>;
               })}
             </p>
+            <p>{runtime} minutes</p>
             <p>
-              &#9679; {(runtime / 60)?.toFixed(1).substring(0, 1)}h{" "}
-              {runtime - 60 - 60}m
-            </p>
-            <p>
-              Rating{" "}
-              <span style={{ color: "#ffe600" }}>
-                {rating(vote_average) || "NA"}
-              </span>
+              Rating: {Math.ceil(vote_average)}
+              <span>⭐</span>
             </p>
           </div>
           <div className='icons'>
             <FaPlayCircle color='red' />
             <button className='btn'>Play Tailer</button>
           </div>
-          <p className='disc'>{overview} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, eligendi facilis. Aliquid, quibusdam saepe adipisci perferendis amet ipsa quisquam? Vitae iusto ipsam fugit maiores cum impedit eum repellat labore pariatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident nesciunt facere officiis, et in, sapiente ea veniam excepturi maxime incidunt eum laborum dicta temporibus, sed velit consequuntur ab! Consequuntur, reprehenderit.</p>
+          <p className='disc'>
+            {overview} Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Veritatis, eligendi facilis. Aliquid, quibusdam saepe adipisci
+            perferendis amet ipsa quisquam? Vitae iusto ipsam fugit maiores cum
+            impedit eum repellat labore pariatur. Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Provident nesciunt facere officiis, et
+            in, sapiente ea veniam excepturi maxime incidunt eum laborum dicta
+            temporibus, sed velit consequuntur ab! Consequuntur, reprehenderit.
+          </p>
           <div className='price'>
             <span>Budget: {CurrencyBudget || "NA"}</span>
             <span>Revenue: {CurrencyRevenue || "NA"}</span>

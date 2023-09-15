@@ -31,44 +31,62 @@
   background: var(--black-700);
   border-radius: 100vmax;
 }
-.row__post_container {
+.rowPostContainer {
   display: flex;
   flex-direction: column;
   margin-left: 15px;
 }
-.row__poster {
-  z-index: 1;
+.rowPoster {
+  position: relative;
   overflow: hidden;
   border-radius: 1vmax;
   margin-inline: auto;
   cursor: pointer;
 }
-.row__poster img {
-  height: 200px;
+.rowPoster img {
+  height: 260px;
   border-radius: 1vmax;
   object-fit: contain;
   transition: all 0.4s ease-out;
 }
-.row__poster:hover img {
+.rowPoster:hover img {
   scale: 1.1;
 }
-.row_details {
+.rowDetails {
   text-align: center;
 }
-.movie_title {
+.rowTitle {
   text-decoration: none;
   color: var(--white);
   font-weight: 500;
   font-size: 18px;
   transition: all 0.2s ease-out;
 }
-.movie_title:active,
-.movie_title:hover {
+.rowTitle:active,
+.rowTitle:hover {
   color: var(--green);
 }
 
-.movie_release_date {
+.rowReleaseDate {
   text-transform: capitalize;
   color: var(--gray);
   font-size: 14px;
+}
+
+.circleRating {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  z-index: 2;
+  background-color: #def4ff;
+  border-radius: 50%;
+  padding: 2px;
+  width: 40px;
+}
+.CircularProgressbar-text {
+  font-weight: 700;
+  color: #000;
+}
+.CircularProgressbar-trail {
+  stroke: transparent;
 }
