@@ -4,7 +4,6 @@ import { fetchDataFromAPI } from "../API";
 const useFetch = (url) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const ApiCall = async () => {
@@ -14,14 +13,12 @@ const useFetch = (url) => {
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
-          setError(err.message);
-          setLoading(false);
+          console.log("SomeThing was Wrong!", err);
         });
     };
     ApiCall();
   }, [url]);
 
-  return { data, loading, error };
+  return { data, loading };
 };
 export default useFetch;
