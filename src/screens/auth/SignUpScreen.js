@@ -5,7 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import "./SignUpScreen.css";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";

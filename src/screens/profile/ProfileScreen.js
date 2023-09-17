@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { FaUserEdit } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import "./ProfileScreen.scss";

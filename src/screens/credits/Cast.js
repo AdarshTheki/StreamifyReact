@@ -1,5 +1,4 @@
 import React from "react";
-import "./Cast.css";
 import { NavLink } from "react-router-dom";
 
 const Cast = ({

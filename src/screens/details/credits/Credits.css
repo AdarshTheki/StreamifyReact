@@ -1,0 +1,68 @@
+:root {
+  --black-900: rgb(8, 8, 10);
+  --black-800: rgb(13, 12, 15);
+  --black-700: rgb(30, 30, 30);
+  --black-600: rgb(40, 38, 45);
+  --gray: rgb(156, 164, 171);
+  --white: rgb(255, 255, 255);
+  --green: rgb(0, 146, 93);
+  --red: rgb(235, 61, 93);
+  --yellow: rgb(255, 205, 25);
+}
+
+/* Cast container*/
+.credits__main {
+  overflow-y: hidden;
+  /* position: relative; */
+}
+.credits__container {
+  padding: 10px 0;
+  display: flex;
+  gap: 15px;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+}
+.credits__container::-webkit-scrollbar {
+  height: 8px;
+}
+.credits__container::-webkit-scrollbar-thumb {
+  background: var(--black-700);
+}
+
+.credits__card {
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  place-content: space-evenly;
+  border-radius: 5px;
+  text-align: center;
+  width: 130px;
+  min-width: 130px;
+  box-shadow: 0 1px 2px 2px var(--black-600);
+}
+.credits__card .credits__img {
+  width: 130px;
+}
+.credits__img img {
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 10px;
+  object-fit: contain;
+}
+.credits__name {
+  font-size: 18px;
+}
+.credits__char {
+  font-size: 12px;
+}
+
+@media (max-width: 35em) {
+  .box-shadow-credits {
+    position: absolute;
+    width: 30px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, transparent, var(--black-800));
+  }
+}
