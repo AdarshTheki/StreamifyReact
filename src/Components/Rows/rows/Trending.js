@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Rows from "./Rows";
+import Rows from "../Rows";
 import { LuLayoutGrid } from "react-icons/lu";
 
 const Trending = () => {

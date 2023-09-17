@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Rows from "./Rows";
+import Rows from "../Rows";
 import { LuLayoutGrid } from "react-icons/lu";
 
 const Movies = () => {
@@ -30,11 +30,7 @@ const Movies = () => {
         </button>
       </div>
       <div className='trending__row'>
-        <Rows
-          fetchUrl={`/movie/${movie}`}
-          show='movie'
-          toggle={toggle}
-        />
+        <Rows fetchUrl={`/movie/${movie}`} show='movie' toggle={toggle} />
         <div className='box-shadow'></div>
       </div>
     </div>

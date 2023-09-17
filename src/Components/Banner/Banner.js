@@ -7,36 +7,80 @@ import ImageSlider from "./ImageSlider";
 function Banner() {
   const { banner, isLoading, isError } = useSelector((state) => state.banner);
 
-  if (isLoading) {
+  if (isLoading || isError) {
+    const styles = {
+      position: "relative",
+      minHeight: "400px",
+      width: "80%",
+      paddingTop: "4rem",
+    };
     return (
-      <div
-        style={{ position: "relative", minHeight: "400px", width: "80%" }}
-        className='max-width'>
+      <div style={styles} className='max-width'>
         <br />
-        <Skeleton width='100%' height={30} />
-        <Skeleton width='80%' height={20} />
-        <Skeleton width='90%' height={30} />
-        <div className='loading'>
-          <h1 data-text='Loading...'>Loading...</h1>
-        </div>
-        <Skeleton width='50%' height={10} />
-        <Skeleton width='100%' height={20} />
-        <Skeleton width='80%' height={10} />
-        <Skeleton width='60%' height={10} />
-        <Skeleton width='100%' height={20} />
+        <Skeleton
+          baseColor='#222'
+          highlightColor='#333'
+          width='100%'
+          height={30}
+        />
+        <Skeleton
+          baseColor='#222'
+          highlightColor='#333'
+          width='80%'
+          height={20}
+        />
+        <Skeleton
+          baseColor='#222'
+          highlightColor='#333'
+          width='90%'
+          height={30}
+        />
+        <Skeleton
+          baseColor='#222'
+          highlightColor='#333'
+          width='50%'
+          height={10}
+        />
         <br />
-        <Skeleton width='80%' height={30} />
-        <Skeleton width='50%' height={30} />
+        <br />
+        <Skeleton
+          baseColor='#222'
+          highlightColor='#333'
+          width='100%'
+          height={20}
+        />
+        <Skeleton
+          baseColor='#222'
+          highlightColor='#333'
+          width='80%'
+          height={10}
+        />
+        <Skeleton
+          baseColor='#222'
+          highlightColor='#333'
+          width='60%'
+          height={10}
+        />
+        <Skeleton
+          baseColor='#222'
+          highlightColor='#333'
+          width='100%'
+          height={20}
+        />
+        <br />
+        <Skeleton
+          baseColor='#222'
+          highlightColor='#333'
+          width='80%'
+          height={30}
+        />
+        <Skeleton
+          baseColor='#222'
+          highlightColor='#333'
+          width='50%'
+          height={30}
+        />
       </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <h1 style={{ fontSize: "3rem", textAlign: "center", color: "red" }}>
-        "the server cannot or will not process the request due to something that
-        is perceived to be a client error"
-      </h1>
     );
   }
 

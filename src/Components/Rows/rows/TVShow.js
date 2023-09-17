@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Rows from "./Rows";
+import Rows from "../Rows";
 import { LuLayoutGrid } from "react-icons/lu";
 
 const TVShow = () => {
@@ -30,11 +30,7 @@ const TVShow = () => {
         </button>
       </div>
       <div className='trending__row'>
-        <Rows
-          fetchUrl={`/tv/${tvShow}`}
-          show='tv'
-          toggle={toggle}
-        />
+        <Rows fetchUrl={`/tv/${tvShow}`} show='tv' toggle={toggle} />
         <div className='box-shadow'></div>
       </div>
     </div>

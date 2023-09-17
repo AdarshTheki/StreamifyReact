@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import lazy from "../../assets/image.svg";
+import lazy from "../../../assets/no-poster.png";
 
 const RowImage = ({ imgUrl }) => {
   const imgURL = `https://image.tmdb.org/t/p/w200/${imgUrl}`;
-
   const [imgSrc, setSrc] = useState(lazy || imgURL);
 
   const customClass =
@@ -17,7 +16,7 @@ const RowImage = ({ imgUrl }) => {
     };
   }, [imgURL]);
 
-  return <img src={imgSrc} className={customClass} alt='img' loading='lazy' />;
+  return <img src={imgSrc} className={customClass} alt='' loading='lazy' />;
 };
 
 export default RowImage;

@@ -15,7 +15,7 @@
   display: grid;
   gap: 10px;
   row-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
   justify-content: space-between;
 }
 .flex {
@@ -73,19 +73,31 @@
   font-size: 14px;
 }
 
+.genre{
+  position: absolute;
+  bottom: 10px;
+  right: 2px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: var(--red);
+  color: var(--white);
+
+}
 .circleRating {
   position: absolute;
-  bottom: 5px;
+  bottom: 0px;
   left: 0px;
   z-index: 2;
   background-color: #def4ff;
   border-radius: 50%;
+  border: 2px solid lightgreen;
   padding: 2px;
-  width: 40px;
+  width: 50px;
 }
 .CircularProgressbar-text {
-  font-weight: 700;
-  color: #000;
+  font-weight: 800;
+  color: #171727;
 }
 .CircularProgressbar-trail {
   stroke: transparent;
