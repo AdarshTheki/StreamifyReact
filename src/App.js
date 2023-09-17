@@ -1,34 +1,34 @@
-import HomeScreen from "./screens/HomeScreen";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import ProfileScreen from "./screens/ProfileScreen";
 import Nav from "./Components/Header/Nav";
-import DetailScreen from "./screens/DetailScreen";
-import SignUpScreen from "./screens/SignUpScreen";
-import { useEffect } from "react";
-// import { auth } from "./firebase";
-// import { login } from "./redux/userSlice";
-import CreditsScreen from "./screens/CreditsScreen";
-import { fetchUpComing } from "./redux/bannerSlice";
-// import { fetchDataFromAPI } from "./API";
-import Explore from "./screens/Explore";
-import SearchResult from "./screens/SearchResult";
 import Footer from "./Components/Footer/Footer";
-import PageNotFound from "./Components/404/PageNotFound";
-import "./App.css";
+import HomeScreen from "./screens/home/HomeScreen";
+import DetailScreen from "./screens/details/DetailScreen";
+import CreditsScreen from "./screens/credits/CreditsScreen";
+import SearchResult from "./screens/searchResult/SearchResult";
+import ExploreScreen from "./screens/explore/ExploreScreen";
+import ProfileScreen from "./screens/profile/ProfileScreen";
+import SignUpScreen from "./screens/auth/SignUpScreen";
+import PageNotFound from "./screens/404/PageNotFound";
+import { fetchUpComing } from "./redux/bannerSlice";
+import { fetchDataFromAPI } from "./API";
+import { setMovies, setTv } from "./redux/genresSlice";
 
 function App() {
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   apiTesting();
-  // }, []);
-
-  // const apiTesting = () => {
-  //   fetchDataFromAPI("/movie/popular").then((data) => {
-  //     console.log(data);
-  //   });
-  // };
+  useEffect(() => {
+    const apiTesting = () => {
+      fetchDataFromAPI("/genre/movie/list").then((data) => {
+        dispatch(setMovies(data?.genres));
+      });
+      fetchDataFromAPI("/genre/tv/list").then((data) => {
+        dispatch(setTv(data?.genres));
+      });
+    };
+    apiTesting();
+  }, [dispatch]);
 
   // useEffect(() => {
   //   const unSubscribed = () => {
@@ -61,11 +61,10 @@ function App() {
       <Nav />
       <Routes>
         <Route path='/' element={<HomeScreen />} />
-        <Route path='search/:query' element={<SearchResult />} />
-        <Route path='explore/:query' element={<Explore />} />
-
         <Route path='login' element={<SignUpScreen />} />
         <Route path='profile' element={<ProfileScreen />} />
+        <Route path='search/:query' element={<SearchResult />} />
+        <Route path='explore/:mediaType' element={<ExploreScreen />} />
         <Route path='show/:id/:id' element={<DetailScreen />} />
         <Route path='credits/:id/:id' element={<CreditsScreen />} />
         <Route path='*' element={<PageNotFound />} />

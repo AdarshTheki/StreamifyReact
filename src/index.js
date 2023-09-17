@@ -8,6 +8,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import "react-circular-progressbar/dist/styles.css";
 
 import App from "./App";
+import './global.scss'
 
 const container = document.getElementById("root");
 const root = createRoot(container);
