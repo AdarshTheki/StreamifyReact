@@ -11,8 +11,8 @@ function HomeScreen() {
       <Banner />
       <Logo />
       <div className='max-width'>
-        {/* <Trending /> */}
-        {/* <Movies /> */}
+        <Trending />
+        <Movies />
         <TVShow />
       </div>
     </div>

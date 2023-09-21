@@ -3,49 +3,63 @@ import { useParams } from "react-router-dom";
 import Row from "../../Components/Rows/Row";
 import { fetchDataFromAPI } from "../../API";
 import Loading from "./Loading";
+import "./style.scss";
 
 const SearchResult = () => {
   const { query } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [collection, setCollection] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [collection, setCollection] = useState([]);
   const [page, setPage] = useState(1);
+  const [totalPage, setTotalPage] = useState("");
+
+  const initialDataFetch = async () => {
+    setLoading(true);
+    await fetchDataFromAPI(`/search/multi?query=${query}&page=${page}`)
+      .then((res) => {
+        setTotalPage(res?.total_pages);
+        setCollection((prev) => [...prev, ...res.results]);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      })
+      .finally(() => setLoading(false));
+  };
+
+  const handleInfiniteScroll = async () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.scrollHeight &&
+      page !== totalPage
+    ) {
+      setPage((prev) => prev + 1);
+    }
+  };
 
   useEffect(() => {
-    const dataFetch = async () => {
-      await fetchDataFromAPI(`/search/multi?query=${query}&page=${page}`)
-        .then((data) => {
-          setCollection(data);
-          setLoading(false)
-        })
-        .catch((err) => {
-          console.log(err.message);
-          setLoading(true)
-        });
-    };
-    dataFetch();
+    initialDataFetch();
   }, [query, page]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleInfiniteScroll);
+    return () => window.removeEventListener("scroll", handleInfiniteScroll);
+  }, [page, totalPage]);
 
   if (loading) {
     return <Loading />;
   }
 
-  const pageHandler = () => {
-    if (page === 1) return;
-    setPage(page - 1);
-  };
-
   return (
     <div className='max-width'>
-      <h1>SearchResult</h1>
-      <div className='row__container grid'>
-        {collection?.results?.map((item) => {
-          return <Row key={item?.id} {...item} show='movie' />;
-        })}
+      <div className='searchResult'>
+        <h2>You search this "{query}"</h2>
+        <div className='row__container grid'>
+          {!collection && <h1>Sorry, Results not found!</h1>}
+          {collection?.map((item) => {
+            return <Row key={item?.id} {...item} show='movie' />;
+          })}
+        </div>
+        <div className='spinner'></div>
       </div>
-      <h2 style={{ display: "flex", justifyContent: "space-evenly" }}>
-        <span onClick={() => setPage(page + 1)}>Next {collection?.page}</span>
-        <span onClick={pageHandler}>Previous Page</span>
-      </h2>
     </div>
   );
 };

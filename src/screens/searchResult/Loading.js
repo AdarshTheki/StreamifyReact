@@ -1,10 +1,10 @@
-import React from 'react'
-import Skeleton from 'react-loading-skeleton';
+import React from "react";
+import Skeleton from "react-loading-skeleton";
 
 const Loading = () => {
   return (
     <div>
-      <div className='grid'>
+      <div className='grid' style={{ gap: "1rem" }}>
         <Skeleton
           baseColor='#222'
           highlightColor='#333'
@@ -38,6 +38,6 @@ const Loading = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Loading
+export default Loading;

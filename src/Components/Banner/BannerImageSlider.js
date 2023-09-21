@@ -1,9 +1,7 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import "./ImageSlider.css";
+import React, { useCallback, useState } from "react";
 import BannerDetail from "./BannerDetail";
 
 const ImageSlider = ({ slides }) => {
-  const timerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const slideStyles = {
@@ -26,15 +24,6 @@ const ImageSlider = ({ slides }) => {
     setCurrentIndex(curr);
   };
 
-  useEffect(() => {
-    const timeOut = (timerRef.current = setTimeout(() => {
-      goToNext();
-    }, 20000));
-    return () => {
-      clearTimeout(timeOut);
-    };
-  }, [goToNext]);
-
   return (
     <div className='slider__styles'>
       <div className='leftArrow__styles' onClick={goToPrevious}>
@@ -45,7 +34,7 @@ const ImageSlider = ({ slides }) => {
       </div>
       <div className='slide__styles' style={slideStyles}></div>
       <div className='dotsContainer__styles'>
-        {slides.map((slide, index) => (
+        {slides.map((_, index) => (
           <div
             key={index}
             className={`dots__styles ${currentIndex === index && "dotsActive"}`}
