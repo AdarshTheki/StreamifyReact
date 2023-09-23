@@ -1,5 +1,11 @@
 ### Hosted Website Link: https://reactapp-878856.web.app
 
+![preview1](./Preview/preview_main.png)
+![preview1](./Preview/preview_detail1.png)
+![preview1](./Preview/preview_detail2.png)
+![preview1](./Preview/preview_video.png)
+![preview1](./Preview/preview_show.png)
+![preview1](./Preview/preview_login.png)
 
 ## Future Options
 
