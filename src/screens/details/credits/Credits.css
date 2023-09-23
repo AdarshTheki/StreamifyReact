@@ -33,12 +33,9 @@
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  place-content: space-evenly;
-  border-radius: 5px;
   text-align: center;
-  width: 130px;
   min-width: 130px;
-  box-shadow: 0 1px 2px 2px var(--black-600);
+  box-shadow: 0 1px 5px 1px var(--black-600);
 }
 .credits__card .credits__img {
   width: 130px;

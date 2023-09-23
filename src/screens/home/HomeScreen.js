@@ -4,6 +4,7 @@ import Movies from "../../Components/Rows/rows/Movies";
 import TVShow from "../../Components/Rows/rows/TVShow";
 import Logo from "../../Components/Logo/Logo";
 import "./HomeScreen.css";
+import Footer from "../../Components/Footer/Footer";
 
 function HomeScreen() {
   return (
@@ -11,10 +12,11 @@ function HomeScreen() {
       <Banner />
       <Logo />
       <div className='max-width'>
-        {/* <Trending /> */}
-        {/* <Movies /> */}
+        <Trending />
+        <Movies />
         <TVShow />
       </div>
+      <Footer/>
     </div>
   );
 }

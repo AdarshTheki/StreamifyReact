@@ -2,7 +2,7 @@ import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "./Banner.css";
 import { useSelector } from "react-redux";
-import ImageSlider from "./ImageSlider";
+import BannerImageSlider from "./BannerImageSlider";
 
 function Banner() {
   const { banner, isLoading, isError } = useSelector((state) => state.banner);
@@ -86,7 +86,7 @@ function Banner() {
 
   return (
     <div>
-      <ImageSlider slides={banner} />
+      <BannerImageSlider slides={banner} />
     </div>
   );
 }

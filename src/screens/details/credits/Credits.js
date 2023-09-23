@@ -16,7 +16,7 @@ const Cast = () => {
       <h2>Top Billed Cast</h2>
       {!loading ? (
         <div className='credits__container'>
-          {data?.cast?.slice(0, 8)?.map((item) => {
+          {data?.cast?.map((item) => {
             return (
               <div key={item?.id} className='credits__card'>
                 <div className='credits__img'>

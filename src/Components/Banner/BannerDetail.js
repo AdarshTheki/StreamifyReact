@@ -1,5 +1,7 @@
 import React from "react";
 import { FaStar, FaPlay, FaPlus } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 const BannerDetail = ({
   title,
   name,
@@ -11,6 +13,8 @@ const BannerDetail = ({
   overview,
   id,
 }) => {
+  const navigate = useNavigate();
+
   // Date Manage
   const releaseDate = new Date(release_date);
   const today = new Date();
@@ -46,7 +50,9 @@ const BannerDetail = ({
           aliquam dolores quas obcaecati maxime?
         </h2>
         <div className='banner__buttons'>
-          <button className='btn red-btn'>
+          <button
+            className='btn red-btn'
+            onClick={() => navigate(`/show/movie/${id}`)}>
             <FaPlay color='white' /> Play Now
           </button>
           <button className='btn black-btn'>
@@ -54,6 +60,7 @@ const BannerDetail = ({
           </button>
         </div>
       </div>
+      {/*  */}
       <div className='banner__gradient'></div>
     </div>
   );

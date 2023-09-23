@@ -5,7 +5,7 @@ const Rating = ({ rating }) => {
     <div className='circleRating'>
       <CircularProgressbar
         value={rating}
-        strokeWidth={14}
+        strokeWidth={10}
         maxValue={100}
         text={`${rating}%`}
         styles={buildStyles({

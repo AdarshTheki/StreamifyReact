@@ -1,32 +1,13 @@
 import React, { useState } from "react";
-import dayjs from "dayjs";
-import { NavLink, useLocation } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
-import lazy from "../../../assets/image@4x.png";
-import useFetch from "../../../hooks/useFetch";
-import "./DetailBanner.css";
-import Loading from "./Loading";
+import { NavLink } from "react-router-dom";
+import dayjs from "dayjs";
 import { PlayIcon } from "../../../Components/VideoPopup/PlayIcon";
 import VideoPopup from "../../../Components/VideoPopup/VideoPopup";
-import './playBtn.scss'
+import lazy from "../../../assets/no-poster.png";
+import useFetch from "../../../hooks/useFetch";
 
-const DetailContainer = () => {
-  const location = useLocation();
-  const path = location.pathname.replace("/show", "");
-  
-  const { data, loading } = useFetch(path);
-  console.log(data);
-  
-  if (loading || data?.message) {
-    return <Loading />;
-  }
-  
-  return <Movies key={data?.id} {...data} path={path} />;
-};
-
-export default DetailContainer;
-
-const Movies = ({
+const DetailContainer = ({
   path,
   original_language,
   name,
@@ -45,11 +26,13 @@ const Movies = ({
   revenue,
   backdrop_path,
 }) => {
+
   // VideoPopup show details in this
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
+
   const { data } = useFetch(`${path}/videos`);
-  console.log(data)
+
   const CurrencyBudget = budget?.toLocaleString("en-US", {
     style: "currency",
     currency: "USD",
@@ -59,22 +42,19 @@ const Movies = ({
     currency: "USD",
   });
 
-  const URL = "https://image.tmdb.org/t/p/w500/";
-  const ImageURL = `${(poster_path && URL + poster_path) || lazy}`;
+  const ImageURL = poster_path
+    ? `https://image.tmdb.org/t/p/w500/${poster_path}`
+    : lazy;
 
   return (
     <div
       style={{
-        backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
+        background: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
       }}
       className='details__main'>
       <div className='details__container'>
         <NavLink to={homepage} target='__blank' className='details__img'>
-          <img
-            src={ImageURL}
-            alt={name || title || "image.org"}
-            title='Official Website'
-          />
+          <img src={ImageURL} alt='pic.org' title='Official Website' />
         </NavLink>
         <div className='details__detail'>
           <h1 className='details__name'>
@@ -110,7 +90,7 @@ const Movies = ({
             <div className='rating'>
               <CircularProgressbar
                 value={vote_average}
-                strokeWidth={10}
+                strokeWidth={8}
                 maxValue={10}
                 text={vote_average?.toFixed(1)}
                 styles={buildStyles({
@@ -127,11 +107,13 @@ const Movies = ({
                 })}
               />
             </div>
-            <div className='playbtn' onClick={() => {
-              setShow(true)
-              setVideoId(data?.results[0]?.key)
-            }}>
-              <PlayIcon /> watching trailer
+            <div
+              className='playbtn'
+              onClick={() => {
+                setShow(true);
+                setVideoId(data?.results[0]?.key);
+              }}>
+              <PlayIcon />Watching Trailer
             </div>
           </div>
           <p className='disc'>
@@ -160,3 +142,4 @@ const Movies = ({
     </div>
   );
 };
+export default DetailContainer;

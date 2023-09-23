@@ -1,13 +1,14 @@
-import DetailBanner from "./detailBanner/DetailBanner";
+import Details from "./detailBanner/Details";
 import Credits from "./credits/Credits";
 import Social from "./social/Social";
 import Related from "./related/Related";
 import VideoDetail from "./videoSection/VideoDetail";
+import Footer from "../../Components/Footer/Footer";
 
 const DetailScreen = () => {
   return (
     <>
-      <DetailBanner />
+      <Details />
       <div className='max-width relative'>
         <Credits />
         <Social />
@@ -15,6 +16,7 @@ const DetailScreen = () => {
         <Related />
         <div className='box-shadow'></div>
       </div>
+      <Footer/>
     </>
   );
 };
