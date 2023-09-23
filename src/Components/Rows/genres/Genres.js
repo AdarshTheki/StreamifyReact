@@ -9,7 +9,7 @@ const Genres = ({ genres }) => {
     movieList?.find((item) => item?.id === genres?.[0]) ||
     tvList?.find((item) => item?.id === genres)?.[0];
 
-  return <span className='genre'>{filter?.name}</span>;
+  return <span className='genre'>{filter?.name || "NA"}</span>;
 };
 
 export default Genres;

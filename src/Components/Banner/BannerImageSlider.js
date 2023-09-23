@@ -4,10 +4,9 @@ import BannerDetail from "./BannerDetail";
 const ImageSlider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const slideStyles = {
-    backgroundImage: `url(
-      https://image.tmdb.org/t/p/original/${slides[currentIndex]?.backdrop_path})`,
-  };
+  const imageUrl = slides[currentIndex]?.backdrop_path
+    ? `https://image.tmdb.org/t/p/original/${slides[currentIndex]?.backdrop_path}`
+    : "";
 
   const goToPrevious = () => {
     const isFirstSlide = currentIndex === 0;
@@ -32,7 +31,6 @@ const ImageSlider = ({ slides }) => {
       <div className='rightArrow__styles' onClick={goToNext}>
         »
       </div>
-      <div className='slide__styles' style={slideStyles}></div>
       <div className='dotsContainer__styles'>
         {slides.map((_, index) => (
           <div
@@ -41,7 +39,9 @@ const ImageSlider = ({ slides }) => {
             onClick={() => goToSlide(index)}></div>
         ))}
       </div>
-      <div className='slide__styles' style={slideStyles}>
+      <div
+        className='slide__styles'
+        style={{ backgroundImage: `url(${imageUrl})` }}>
         <BannerDetail {...slides[currentIndex]} />
       </div>
     </div>

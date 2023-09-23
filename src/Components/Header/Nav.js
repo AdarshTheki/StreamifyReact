@@ -5,6 +5,7 @@ import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
 import { useLocation, useNavigate } from "react-router-dom";
 import Wrapper from "../Wrapper/Wrapper";
+import { useSelector } from "react-redux";
 import "./Nav.scss";
 
 const Header = () => {
@@ -15,6 +16,7 @@ const Header = () => {
   const [showSearch, setShowSearch] = useState("");
   const navigation = useNavigate();
   const location = useLocation();
+  const { user } = useSelector((state) => state?.user);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,6 +82,15 @@ const Header = () => {
           <li className='menuItem' onClick={() => navigationHandler("tv")}>
             TV Shows
           </li>
+          {!user ? (
+            <li className='menuItem' onClick={() => navigation("/login")}>
+              Login
+            </li>
+          ) : (
+            <li className='menuItem' onClick={() => navigation('/profile')}>
+              Profile
+            </li>
+          )}
           <li className='menuItem'>
             <HiOutlineSearch onClick={openSearch} />
           </li>
