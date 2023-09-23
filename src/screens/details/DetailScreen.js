@@ -3,6 +3,7 @@ import Credits from "./credits/Credits";
 import Social from "./social/Social";
 import Related from "./related/Related";
 import VideoDetail from "./videoSection/VideoDetail";
+import Footer from "../../Components/Footer/Footer";
 
 const DetailScreen = () => {
   return (
@@ -15,6 +16,7 @@ const DetailScreen = () => {
         <Related />
         <div className='box-shadow'></div>
       </div>
+      <Footer/>
     </>
   );
 };

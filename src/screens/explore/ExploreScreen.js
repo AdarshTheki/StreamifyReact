@@ -15,31 +15,42 @@ const ExploreScreen = () => {
 
   const fetchData = async () => {
     setLoading(true);
-    await fetchDataFromAPI(`/${mediaType}/popular?page=${page}`)
-      .then((data) => {
-        const newMovies = data?.results;
-        setMovies((prev) => {
-          return [...new Set([...prev, ...newMovies])];
-        });
-      })
-      .catch((err) => {
-        console.log("Error Fetching Data: ", err.message);
-      })
-      .finally(() => setLoading(false));
+    try {
+      const data = await fetchDataFromAPI(`/${mediaType}/popular?page=${page}`);
+      const newItems = data?.results;
+
+      if (page === 1 && newItems) {
+        if (mediaType === "movie") {
+          setMovies(newItems);
+        } else if (mediaType === "tv") {
+          setMovies(newItems);
+        }
+      } else if (newItems) {
+        if (mediaType === "movie") {
+          setMovies((prev) => [...prev, ...newItems]);
+        } else if (mediaType === "tv") {
+          setMovies((prev) => [...prev, ...newItems]);
+        }
+      }
+    } catch (error) {
+      console.error("Error Fetching Data: ", error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleScrolled = async () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop ===
+      document.documentElement.scrollHeight
+    ) {
+      setPage((prev) => prev + 1);
+    }
   };
 
   useEffect(() => {
     fetchData();
   }, [page, mediaType]);
-
-  const handleScrolled = async () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.scrollHeight 
-    ) {
-      setPage((prev) => prev + 1);
-    }
-  };
 
   useEffect(() => {
     window.addEventListener("scroll", handleScrolled);
