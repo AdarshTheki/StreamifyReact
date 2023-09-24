@@ -8,12 +8,12 @@
 ![preview1](./Preview/preview_login.png)
 -->
 <div>
-<img src="./Preview/preview_main.png" alt="Image Description" width="33%">
-<img src="./Preview/preview_show.png" alt="Image Description" width="33%">
-<img src="./Preview/preview_detail2.png" alt="Image Description" width="33%">
-<img src="./Preview/preview_video.png" alt="Image Description" width="33%">
-<img src="./Preview/preview_detail1.png" alt="Image Description" width="33%">
-<img src="./Preview/preview_login.png" alt="Image Description" width="33%">
+<img src="./Preview/preview_main.png" alt="Image Description" width="30%">
+<img src="./Preview/preview_show.png" alt="Image Description" width="30%">
+<img src="./Preview/preview_detail2.png" alt="Image Description" width="30%">
+<img src="./Preview/preview_video.png" alt="Image Description" width="30%">
+<img src="./Preview/preview_detail1.png" alt="Image Description" width="30%">
+<img src="./Preview/preview_login.png" alt="Image Description" width="30%">
 </div>
 
 ## Future Options
