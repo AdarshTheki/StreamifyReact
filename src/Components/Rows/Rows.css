@@ -1,103 +1,111 @@
-:root {
-  --black-900: rgb(8, 8, 10);
-  --black-800: rgb(13, 12, 15);
-  --black-700: rgb(30, 30, 30);
-  --black-600: rgb(40, 38, 45);
-  --gray: rgb(156, 164, 171);
-  --white: rgb(255, 255, 255);
-  --green: rgb(0, 146, 93);
-  --red: rgb(235, 61, 93);
-  --yellow: rgb(255, 205, 25);
-}
-
 .grid {
-  padding: 10px;
-  display: grid;
-  gap: 10px;
-  row-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-  justify-content: space-between;
+    display: grid;
+    gap: 10px;
+    row-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    justify-content: space-between;
 }
 .flex {
-  display: flex;
-  overflow: auto;
-  scrollbar-width: thin;
-  padding-top: 10px;
+    display: flex;
 }
-.row__container::-webkit-scrollbar {
-  height: 8px;
+.row__container {
+    padding-top: 10px;
+    overflow: hidden;
+    scroll-snap-type: x mandatory;
 }
-.row__container::-webkit-scrollbar-thumb {
-  background: var(--black-700);
-  border-radius: 100vmax;
+.row__container #leftArrow,
+.row__container #rightArrow {
+    position: absolute;
+    top: 30%;
+    cursor: pointer;
+    z-index: 40;
 }
+#leftArrow {
+    left: 10px;
+}
+#rightArrow {
+    right: 10px;
+}
+#leftArrow svg,
+#rightArrow svg {
+    font-size: 2rem;
+    padding: 2px;
+    border-radius: 5px;
+    background: #333;
+}
+#leftArrow svg:active,
+#rightArrow svg:active {
+    background: #111;
+}
+
 .rowPostContainer {
-  display: flex;
-  flex-direction: column;
-  margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    scroll-snap-align: start;
 }
 .rowPoster {
-  position: relative;
-  overflow: hidden;
-  border-radius: 1vmax;
-  margin-inline: auto;
-  cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 1vmax;
+    margin-inline: auto;
+    cursor: pointer;
 }
 .rowPoster .rowImg {
-  height: 260px;
-  border-radius: 1vmax;
-  object-fit: contain;
+    height: 260px;
+    border-radius: 1vmax;
+    object-fit: contain;
 }
 .rowPoster .rowImg:hover {
-  scale: 0.96;
+    scale: 0.96;
 }
 .rowDetails {
-  text-align: center;
-  min-width: 120px;
+    text-align: center;
+    min-width: 120px;
 }
 .rowTitle {
-  text-decoration: none;
-  color: var(--white);
-  font-weight: 500;
-  font-size: 18px;
-  transition: all 0.2s ease-out;
+    text-decoration: none;
+    color: var(--white);
+    font-weight: 500;
+    font-size: 18px;
+    transition: all 0.2s ease-out;
 }
 .rowTitle:active,
 .rowTitle:hover {
-  color: var(--green);
+    color: var(--green);
 }
 
 .rowReleaseDate {
-  text-transform: capitalize;
-  color: var(--gray);
-  font-size: 14px;
+    text-transform: capitalize;
+    color: var(--gray);
+    font-size: 14px;
 }
 
 .genre {
-  position: absolute;
-  bottom: 10px;
-  right: 2px;
-  padding: 2px 5px;
-  border-radius: 4px;
-  font-size: 14px;
-  background-color: var(--red);
-  color: var(--white);
+    position: absolute;
+    bottom: 10px;
+    right: 2px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: var(--red);
+    color: var(--white);
 }
 .circleRating {
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  z-index: 2;
-  background-color: #def4ff;
-  border-radius: 50%;
-  border: 2px solid lightgreen;
-  padding: 2px;
-  width: 50px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 2;
+    background-color: #def4ff;
+    border-radius: 50%;
+    border: 2px solid lightgreen;
+    padding: 2px;
+    width: 50px;
 }
 .CircularProgressbar-text {
-  font-weight: 800;
-  color: #171727;
+    font-weight: 800;
+    color: #171727;
 }
 .CircularProgressbar-trail {
-  stroke: transparent;
+    stroke: transparent;
 }
