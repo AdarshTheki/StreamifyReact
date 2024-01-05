@@ -1,6 +1,6 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
-import "./Banner.css";
+import "./Banner.scss";
 import { useSelector } from "react-redux";
 import BannerImageSlider from "./BannerImageSlider";
 
