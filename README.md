@@ -1,20 +1,6 @@
-### Hosted Website Link: https://reactapp-878856.web.app
-<!--
-![preview1](./Preview/preview_main.png)
-![preview1](./Preview/preview_detail1.png)
-![preview1](./Preview/preview_detail2.png)
-![preview1](./Preview/preview_video.png)
-![preview1](./Preview/preview_show.png)
-![preview1](./Preview/preview_login.png)
--->
-<div>
-<img src="./Preview/preview_main.png" alt="Image Description" width="30%">
-<img src="./Preview/preview_show.png" alt="Image Description" width="30%">
-<img src="./Preview/preview_detail2.png" alt="Image Description" width="30%">
-<img src="./Preview/preview_video.png" alt="Image Description" width="30%">
-<img src="./Preview/preview_detail1.png" alt="Image Description" width="30%">
-<img src="./Preview/preview_login.png" alt="Image Description" width="30%">
-</div>
+### React Stream Website
+
+#### Netlify Hosted Link : https://react-stream-web-app.netlify.app
 
 ## Future Options
 
@@ -34,7 +20,7 @@ This project aims to create a Netflix clone, replicating some of the main featur
 
 7. **More features:**: Create a system to movie and TV show provide personalized `recommendations`, play multiple videos `trailers`, `related` show or `infinity scrolling`.
 
-Add more features in Soon...\   
+Add more features in Soon...
 
 8. **WatchList**: Allow users to add movies and TV shows to a personal watchList, making it easy to save content for later viewing.
 
