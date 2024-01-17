@@ -5,13 +5,9 @@ export const fetchDataFromAPI = async (url, params) => {
     const TMDB_TOKEN =
         'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YTVjOGRlNWViYWFjMWNlMmMwYjc1ZmJhOTgwMDQ4MiIsInN1YiI6IjY0MTQ5MzFiYjQyMjQyNDE0MmE0NmQxNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nJVimJfnnidPs-tHhkKvO9kNO0WGYwvj-NUp5eJrqA8';
 
-    const headers = {
-        Authorization: 'bearer ' + TMDB_TOKEN,
-    };
-
     try {
         const { data } = await axios.get(BASE_URL + url, {
-            headers: headers,
+            headers: { Authorization: 'bearer ' + TMDB_TOKEN },
             params,
         });
         return data;

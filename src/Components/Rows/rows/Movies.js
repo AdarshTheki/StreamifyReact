@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Rows from '../Rows';
-import { LuLayoutGrid } from 'react-icons/lu';
+import { IoGrid, IoList } from 'react-icons/io5';
 
 const Movies = () => {
     const [toggle, setToggle] = useState(false);
@@ -25,8 +25,8 @@ const Movies = () => {
                 </div>
                 <button
                     onClick={() => setToggle(!toggle)}
-                    className={`toggle__btn ${toggle && 'isActive'}`}>
-                    <LuLayoutGrid fontSize={20} />
+                    className={`toggle__btn`}>
+                    {toggle ? <IoGrid fontSize={20} /> : <IoList fontSize={20} />}
                 </button>
             </div>
             <div className='trending__row'>

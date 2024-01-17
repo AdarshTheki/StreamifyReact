@@ -50,14 +50,15 @@
     border-radius: 1vmax;
     margin-inline: auto;
     cursor: pointer;
+    transition: scale 0.3s ease-out;
+}
+.rowPoster:hover{
+    scale: 0.96;
 }
 .rowPoster .rowImg {
-    height: 260px;
+    height: 300px;
     border-radius: 1vmax;
     object-fit: contain;
-}
-.rowPoster .rowImg:hover {
-    scale: 0.96;
 }
 .rowDetails {
     text-align: center;
@@ -91,20 +92,20 @@
     background-color: var(--red);
     color: var(--white);
 }
+
 .circleRating {
     position: absolute;
-    bottom: 0px;
-    left: 0px;
+    bottom: 10px;
+    left: 10px;
     z-index: 2;
-    background-color: #def4ff;
+    border: none;
     border-radius: 50%;
-    border: 2px solid lightgreen;
-    padding: 2px;
-    width: 50px;
+    background: #000000af;
+    width: 40px;
+    height: 40px;
 }
-.CircularProgressbar-text {
-    font-weight: 800;
-    color: #171727;
+text.CircularProgressbar-text {
+    font-weight: 900;
 }
 .CircularProgressbar-trail {
     stroke: transparent;

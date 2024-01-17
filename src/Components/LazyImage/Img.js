@@ -1,16 +1,8 @@
-import React from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import NoPoster from "../../assets/no-poster.png";
+import React from 'react';
+import NoPoster from '../../assets/no-poster.png';
 
 const Img = ({ src, className }) => {
-  return (
-    <LazyLoadImage
-      className={className || ""}
-      effect='blur'
-      src={src || NoPoster}
-      loading='lazy'
-    />
-  );
+    return <img src={src || NoPoster} alt='moPoster' loading='lazy' className={className} />;
 };
 
 export default Img;

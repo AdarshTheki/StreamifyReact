@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import Row from './Row';
-import useFetch from '../../hooks/useFetch';
+import useFetch from '../../Hooks/useFetch';
 import './Rows.css';
 import Loading from './Loading';
 import NoPoster from '../NotFund/NoPoster';
@@ -24,10 +24,13 @@ function Rows({ fetchUrl, show, toggle }) {
 
     return (
         <div className={`row__container ${toggle ? 'grid' : 'flex'}`} ref={containerRef}>
-            {!data?.results?.length && <NoPoster />}
-            {data?.results?.map((movie) => {
-                return <Row key={movie.id} {...movie} show={show} />;
-            })}
+            {!data?.results?.length ? (
+                <NoPoster />
+            ) : (
+                data?.results?.map((movie) => {
+                    return <Row key={movie.id} {...movie} show={show} />;
+                })
+            )}
             {!toggle && (
                 <>
                     <span id='leftArrow' onClick={() => sideScroll('left')}>
