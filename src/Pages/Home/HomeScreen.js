@@ -1,9 +1,9 @@
 import Banner from '../../Components/Banner/Banner';
-import Trending from '../../Components/Rows/rows/Trending';
-import Movies from "../../Components/Rows/rows/Movies";
-import TVShow from "../../Components/Rows/rows/TVShow";
-import './HomeScreen.css';
+import Trending from './Trending';
+import Movies from "./Movies";
+import TVShow from "./TVShow";
 import Footer from '../../Components/Footer/Footer';
+import './HomeScreen.css';
 
 function HomeScreen() {
     return (
