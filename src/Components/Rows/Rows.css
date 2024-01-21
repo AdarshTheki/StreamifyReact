@@ -1,12 +1,11 @@
 .grid {
     display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 10px;
-    row-gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
-    justify-content: space-between;
 }
 .flex {
     display: flex;
+    gap: 10px;
 }
 .row__container {
     padding-top: 10px;
@@ -41,7 +40,6 @@
 .rowPostContainer {
     display: flex;
     flex-direction: column;
-    margin-left: 15px;
     scroll-snap-align: start;
 }
 .rowPoster {
@@ -52,11 +50,13 @@
     cursor: pointer;
     transition: scale 0.3s ease-out;
 }
-.rowPoster:hover{
+.rowPoster:hover {
     scale: 0.96;
 }
 .rowPoster .rowImg {
-    height: 300px;
+    max-height: 300px;
+    width: 100%;
+    min-width: 170px;
     border-radius: 1vmax;
     object-fit: contain;
 }
@@ -91,22 +91,4 @@
     font-size: 14px;
     background-color: var(--red);
     color: var(--white);
-}
-
-.circleRating {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    z-index: 2;
-    border: none;
-    border-radius: 50%;
-    background: #000000af;
-    width: 40px;
-    height: 40px;
-}
-text.CircularProgressbar-text {
-    font-weight: 900;
-}
-.CircularProgressbar-trail {
-    stroke: transparent;
 }

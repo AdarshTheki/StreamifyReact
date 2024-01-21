@@ -137,8 +137,11 @@ Banner Image Slider
     transition: all 0.8s ease-in !important;
 }
 
-.leftArrow__styles,
-.rightArrow__styles {
+.slider {
+    position: relative;
+}
+.slider_leftArrow,
+.slider_rightArrow {
     position: absolute;
     top: 50%;
     cursor: pointer;
@@ -148,33 +151,44 @@ Banner Image Slider
     z-index: 1;
 }
 
-.leftArrow__styles {
+.slider_leftArrow {
     left: 20px;
 }
 
-.rightArrow__styles {
+.slider_rightArrow {
     right: 20px;
 }
 
-.dotsContainer__styles {
-    position: absolute;
-    bottom: 0;
-    left: 5%;
-    right: 5%;
-    margin: 10px auto;
+.slider_lists {
+    height: 150px;
+    margin: 0 30px;
     display: flex;
-    justify-content: center;
+    gap: 10px;
+    scroll-snap-type: x mandatory;
+    overflow-x: hidden;
 }
-.dots__styles {
-    z-index: 1;
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-    cursor: pointer;
-    font-size: 20px;
-    border: 1px solid var(--white);
-    border-radius: 50%;
+.slider_item {
+    scroll-snap-align: start;
+    min-width: 180px;
+    position: relative;
+    opacity: 0.3;
+    transition: all 0.5s ease-in-out;
+    .slider_img {
+        border-radius: 1vmax;
+        background-size: contain;
+        background-position: center center;
+        cursor: pointer;
+        width: 100%;
+    }
+    .slider_title {
+        position: absolute;
+        bottom: 10%;
+        left: 5%;
+        right: 5%;
+    }
 }
-.dotsActive {
-    background: var(--white);
+.slider_item.active,
+.slider_item:hover {
+    opacity: 1;
+    min-width: 250px;
 }

@@ -1,38 +1,44 @@
-.filterOption {
-  padding-top: 5rem;
-  display: flex;
-  gap: 15px;
-  align-items: center;
-  justify-content: flex-start;
-  font-size: 1rem;
+.filterContainer {
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    max-width: 95%;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
-.filterOption select {
-  font-size: 1rem;
-  padding: 5px 10px;
-  text-transform: capitalize;
-}
-.filterOption button {
-  display: block;
-  padding: 5px 10px;
-  text-transform: uppercase;
-  border: 1px solid white;
-  border-radius: 4px;
-  background-color: black;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s ease-in-out;
-}
-.filterOption button:hover {
-  color: black;
-  background-color: white;
-}
-.filterOption p span {
-  color: var(--red);
-  font-size: 1.2rem;
-  text-transform: uppercase;
-}
-.sorry {
-  padding: 2rem 0;
-  text-align: center;
 
+.filterOption select {
+    margin-left: 5px;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 1vmax;
+    text-transform: capitalize;
+    cursor: pointer;
 }
+.filterPageBtn{
+  display: flex;
+  gap: 5px;
+  flex-basis: 1;
+}
+.filterPageBtn .pageBtn{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+.filterPageBtn .pageBtn.active{
+  background: var(--red);
+}
+.infinityScreen{
+  display: flex;
+  gap: 10px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
