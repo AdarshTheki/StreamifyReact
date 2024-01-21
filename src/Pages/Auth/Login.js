@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { signInWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 
 const Login = () => {
@@ -12,17 +12,10 @@ const Login = () => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
             .then((user) => {
-                console.log(user);
-                sendEmailVerification(auth.currentUser)
-                    .then(() => {
-                        alert('Verification email sent.');
-                        emailRef.current.value = '';
-                        passwordRef.current.value = '';
-                        navigate('/profile');
-                    })
-                    .catch((error) => {
-                        console.error('Error sending verification email:', error);
-                    });
+                emailRef.current.value = '';
+                passwordRef.current.value = '';
+                alert(`User sign In Success \n ${user?.user?.email}`);
+                navigate('/profile');
             })
             .catch((error) => {
                 alert(error.message);
