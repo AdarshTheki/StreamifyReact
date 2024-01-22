@@ -66,7 +66,7 @@ function App() {
                 <Route path='signup' element={<SignUp />} />
                 <Route path='search/:query' element={<Search />} />
                 <Route path='explore/:mediaType' element={<Explore />} />
-                <Route path='show/:id/:id' element={<Details />} />
+                <Route path='show/:mediaType/:id' element={<Details />} />
                 <Route path='credits/:id/:id' element={<Credits />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
