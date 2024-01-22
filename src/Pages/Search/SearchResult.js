@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Row from '../../Components/Rows/Row';
 import { fetchDataFromAPI } from '../../API';
+import './SearchResult.scss';
 
 const SearchResult = () => {
     const { query } = useParams();
@@ -64,26 +65,34 @@ const SearchResult = () => {
     });
 
     return (
-        <div className='max-width'>
-            <div className='filterOption'>
-                <label htmlFor='sort'>Filters By</label>
-                <select id='sort' value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-                    <option value='popularity'>Popularity</option>
-                    <option value='vote_average'>vote average</option>
-                    <option value='release_date'>release date</option>
-                </select>
+        <div className='searchResult'>
+            <div className='searchFilter'>
+                <label htmlFor='searchSort'>
+                    Filters By:{' '}
+                    <select
+                        id='searchSort'
+                        value={sortBy}
+                        onChange={(e) => setSortBy(e.target.value)}>
+                        <option value='popularity'>Popularity</option>
+                        <option value='vote_average'>vote average</option>
+                        <option value='release_date'>release date</option>
+                    </select>
+                </label>
                 <button onClick={() => setMediaType('tv')}>Tv Show</button>
                 <button onClick={() => setMediaType('movie')}>Movie</button>
                 <p>
-                    You search this 🔥<span>{query}</span>
+                    You search result is "<span>{query}</span>"
                 </p>
             </div>
-            {sortedCollection.length === 0 && <h1 className='sorry'>Sorry, Results not found!</h1>}
-            <div className='row__container grid'>
-                {sortedCollection?.map((item) => {
-                    return <Row key={item?.id} {...item} show='movie' />;
-                })}
-            </div>
+            {sortedCollection.length === 0 ? (
+                <h1 className='sorry'>Sorry, Results not found!</h1>
+            ) : (
+                <div className='row__container grid'>
+                    {sortedCollection?.map((item) => {
+                        return <Row key={item?.id} {...item} show='movie' />;
+                    })}
+                </div>
+            )}
             {!loading && <div className='spinner'></div>}
         </div>
     );

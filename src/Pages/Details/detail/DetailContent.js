@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { PlayIcon } from '../../../Components/VideoPopup/PlayIcon';
 import VideoPopup from '../../../Components/VideoPopup/VideoPopup';
-import lazy from '../../../assets/no-poster.png';
+import lazy from '../../../assets/picture-grey.svg';
 import useFetch from '../../../Hooks/useFetch';
 
 const DetailContainer = ({

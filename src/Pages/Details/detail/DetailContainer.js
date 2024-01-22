@@ -10,7 +10,7 @@ const DetailContainer = () => {
 
     const { data, loading } = useFetch(path);
 
-    if (loading || data?.message) {
+    if (loading) {
         return (
             <div style={{ paddingTop: '4rem' }}>
                 <div className='max-width'>
@@ -31,7 +31,7 @@ const DetailContainer = () => {
         );
     }
 
-    return <DetailContent key={data?.id} {...data} path={path} />;
+    return <DetailContent {...data} path={path} />;
 };
 
 export default DetailContainer;
