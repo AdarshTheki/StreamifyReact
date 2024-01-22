@@ -152,3 +152,15 @@ Spinner
         stroke-dasharray: 30;
     }
 }
+
+// overflow scrollbar color/height manage
+.scrollbar {
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+}
+.scrollbar::-webkit-scrollbar {
+    height: 8px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+    background: var(--black-700);
+}

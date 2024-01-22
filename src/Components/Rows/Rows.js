@@ -23,7 +23,7 @@ function Rows({ fetchUrl, show, toggle }) {
     }
 
     return (
-        <div className={`row__container ${toggle ? 'grid' : 'flex'}`} ref={containerRef}>
+        <div className={`row__container scrollbar ${toggle ? 'grid' : 'flex'}`} ref={containerRef}>
             {!data?.results?.length ? (
                 <NoPoster />
             ) : (

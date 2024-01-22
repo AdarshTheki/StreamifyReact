@@ -143,7 +143,7 @@ Banner Image Slider
 .slider_leftArrow,
 .slider_rightArrow {
     position: absolute;
-    top: 50%;
+    top: 40%;
     cursor: pointer;
     color: var(--white);
     border-radius: 100vmax;
@@ -152,20 +152,18 @@ Banner Image Slider
 }
 
 .slider_leftArrow {
-    left: 20px;
+    left: 10px;
 }
 
 .slider_rightArrow {
-    right: 20px;
+    right: 10px;
 }
 
 .slider_lists {
-    height: 150px;
-    margin: 0 30px;
+    margin: 10px 30px;
     display: flex;
     gap: 10px;
     scroll-snap-type: x mandatory;
-    overflow-x: hidden;
 }
 .slider_item {
     scroll-snap-align: start;
@@ -185,10 +183,10 @@ Banner Image Slider
         bottom: 10%;
         left: 5%;
         right: 5%;
+        text-shadow: 1px 1px 5px var(--black-800);
     }
 }
 .slider_item.active,
 .slider_item:hover {
     opacity: 1;
-    min-width: 250px;
 }

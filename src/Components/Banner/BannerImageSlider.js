@@ -50,7 +50,7 @@ const ImageSlider = ({ slides, time = 5000 }) => {
                 <div className='slider_rightArrow' onClick={goToNext}>
                     <FaCircleChevronRight />
                 </div>
-                <div className='slider_lists' ref={sliderContainer}>
+                <div className='slider_lists scrollbar' ref={sliderContainer}>
                     {slides.map((item, index) => {
                         const imageItem = item?.backdrop_path
                             ? `https://image.tmdb.org/t/p/w200/${item?.backdrop_path}`

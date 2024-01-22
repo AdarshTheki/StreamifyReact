@@ -9,7 +9,6 @@
 }
 .row__container {
     padding-top: 10px;
-    overflow: hidden;
     scroll-snap-type: x mandatory;
 }
 .row__container #leftArrow,

@@ -1,20 +1,18 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Rows from '../../../Components/Rows/Rows';
 
 const Related = () => {
-    const location = useLocation();
-    const path = location.pathname.replace('/show', '');
-    const find = location.pathname.match('movie');
+    const { mediaType, id } = useParams();
     return (
         <div>
+            <h2>Similar Show</h2>
             <div style={{ position: 'relative' }}>
-                <h2>Similar Show</h2>
-                <Rows fetchUrl={`${path}/similar`} show={!find ? 'tv' : 'movie'} />
+                <Rows fetchUrl={`/${mediaType}/${id}/similar`} show={mediaType} />
             </div>
+            <h2>Recommendations</h2>
             <div style={{ position: 'relative' }}>
-                <h2>Recommendations</h2>
-                <Rows fetchUrl={`${path}/recommendations`} show={!find ? 'tv' : 'movie'} />
+                <Rows fetchUrl={`/${mediaType}/${id}/recommendations`} show={mediaType} />
             </div>
         </div>
     );
