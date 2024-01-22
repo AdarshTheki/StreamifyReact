@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import dayjs from 'dayjs';
-import Circular from '../../Components/Progressbar/Circular';
+import CircularBar from '../Progressbar/CircularProgressBar';
 import Genres from './genres/Genres';
 import Img from '../LazyImage/Img';
 
@@ -24,7 +24,7 @@ const Row = ({
         <div className='rowPostContainer'>
             <NavLink to={`/show/${show}/${id}`} className='rowPoster'>
                 <Img src={posterUrl} className={'rowImg'} />
-                <Circular value={(vote_average * 10)?.toFixed(0)} size={'1.8rem'} />
+                <CircularBar percentage={(vote_average * 10)?.toFixed(0)} />
                 <Genres genres={genre_ids} />
             </NavLink>
             <div className='rowDetails'>

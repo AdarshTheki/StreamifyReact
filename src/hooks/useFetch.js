@@ -1,24 +1,25 @@
-import { useEffect, useState } from "react";
-import { fetchDataFromAPI } from "../API";
+import { useEffect, useState } from 'react';
+import { fetchDataFromAPI } from '../API';
 
 const useFetch = (url) => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const ApiCall = async () => {
-      await fetchDataFromAPI(url)
-        .then((res) => {
-          setData(res);
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.log("SomeThing was Wrong!", err);
-        });
-    };
-    ApiCall();
-  }, [url]);
+    useEffect(() => {
+        const ApiCall = async () => {
+            try {
+                const result = await fetchDataFromAPI(url);
+                setData(result);
+            } catch (error) {
+                setError(`SomeThing was Wrong: ${error.message}`);
+            } finally {
+                setLoading(false);
+            }
+        };
+        ApiCall();
+    }, [url]);
 
-  return { data, loading };
+    return { data, loading, error };
 };
 export default useFetch;

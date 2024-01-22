@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
-import Row from './Row';
-import useFetch from '../../Hooks/useFetch';
-import './Rows.css';
-import Loading from './Loading';
-import NoPoster from '../NotFund/NoPoster';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import useFetch from '../../Hooks/useFetch';
+import NoPoster from '../NotFund/NoPoster';
+import Loading from './Loading';
+import Row from './Row';
+import './Rows.css';
 
 function Rows({ fetchUrl, show, toggle }) {
     const { data, loading } = useFetch(fetchUrl);
@@ -18,7 +18,7 @@ function Rows({ fetchUrl, show, toggle }) {
         });
     };
 
-    if (loading || data.message) {
+    if (loading) {
         return <Loading />;
     }
 
