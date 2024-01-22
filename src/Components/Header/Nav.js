@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import logo from "../../assets/netflix_logo.png";
 import { HiOutlineSearch } from "react-icons/hi";
