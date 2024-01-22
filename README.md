@@ -1,5 +1,7 @@
 ### React Stream Website
 
+#### Firebase Host Link1 : https://netflix-59621.web.app
+#### Firebase Host Link2 : https://netflix-59621.firebaseapp.com
 #### Netlify Hosted Link : https://react-stream-web-app.netlify.app
 
 ## Future Options
