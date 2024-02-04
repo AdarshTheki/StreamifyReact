@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import dayjs from 'dayjs';
 import CircularBar from '../Progressbar/CircularProgressBar';
-import Genres from './genres/Genres';
+import Genres from './Genres';
 import Img from '../LazyImage/Img';
 
 const Row = ({
