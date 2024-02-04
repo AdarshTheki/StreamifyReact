@@ -100,8 +100,20 @@ body {
     right: 0;
     bottom: 0;
     z-index: 1;
-    background: linear-gradient(to right, transparent, var(--black-800));
+    // background: linear-gradient(to right, transparent, var(--black-800));
+    background: linear-gradient(to right, transparent, #1010107a, #101010da, var(--black-800));
 }
+// @media (max-width: 100em) {
+//     .box-shadow-credits {
+//         position: absolute;
+//         width: 60px;
+//         top: 0;
+//         right: 0;
+//         bottom: 0;
+//         background: linear-gradient(to right, transparent, #1010107a, #101010da, var(--black-800));
+//     }
+// }
+
 
 /* 
 =======

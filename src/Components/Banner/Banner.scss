@@ -137,9 +137,6 @@ Banner Image Slider
     transition: all 0.8s ease-in !important;
 }
 
-.slider {
-    position: relative;
-}
 .slider_leftArrow,
 .slider_rightArrow {
     position: absolute;
@@ -160,30 +157,23 @@ Banner Image Slider
 }
 
 .slider_lists {
-    margin: 10px 30px;
-    display: flex;
-    gap: 10px;
-    scroll-snap-type: x mandatory;
+    width: 90vw;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
 }
 .slider_item {
-    scroll-snap-align: start;
-    min-width: 180px;
-    position: relative;
-    opacity: 0.3;
-    transition: all 0.5s ease-in-out;
+    opacity: 0.2;
     .slider_img {
-        border-radius: 1vmax;
+        border-radius: 5px;
         background-size: contain;
         background-position: center center;
         cursor: pointer;
         width: 100%;
-    }
-    .slider_title {
-        position: absolute;
-        bottom: 10%;
-        left: 5%;
-        right: 5%;
-        text-shadow: 1px 1px 5px var(--black-800);
     }
 }
 .slider_item.active,
