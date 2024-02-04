@@ -1,26 +1,59 @@
-import DetailContainer from './detail/DetailContainer';
-import CastSection from './credits/CastSection';
-import SocialSection from './social/SocialSection';
-import Related from './related/Related';
-import VideoDetail from './videoSection/VideoDetail';
+import { useParams } from 'react-router-dom';
+import DetailSection from './DetailSection';
+import CreditsSection from './CreditsSection';
+import VideoDetail from './VideoDetail';
 import Footer from '../../Components/Footer/Footer';
-import './DetailScreen.scss';
+import Rows from '../../Components/Rows/Rows';
+import SocialSection from './SocialSection';
+import './style.scss';
 
 const DetailScreen = () => {
+    const { mediaType, id } = useParams();
+    const styles = {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 20,
+        maxWidth: '95vw',
+        margin: '0 auto',
+        position: 'relative',
+    };
+
     return (
-        <>
-            <DetailContainer />
-            <div className='max-width relative'>
-                <div className='mediaSection'>
-                    <CastSection />
-                    <SocialSection />
-                </div>
+        <div>
+            {/* Detail Section */}
+            <DetailSection />
+            <div style={styles}>
+                {/* Combine Cast & Crew Section */}
+                <CreditsSection />
+
+                {/* Social Section */}
+                <SocialSection />
+
+                {/* Video Section */}
                 <VideoDetail />
-                <Related />
+
+                {/* Similar show Section */}
+                <div>
+                    <h2>Similar Show</h2>
+                    <div style={{ position: 'relative' }}>
+                        <Rows fetchUrl={`/${mediaType}/${id}/similar`} show={mediaType} />
+                    </div>
+                </div>
+
+                {/* Recommendations Section */}
+                <div>
+                    <h2>Recommendations</h2>
+                    <div style={{ position: 'relative' }}>
+                        <Rows fetchUrl={`/${mediaType}/${id}/recommendations`} show={mediaType} />
+                    </div>
+                </div>
+
+                {/* Side Shadow */}
                 <div className='box-shadow'></div>
             </div>
+            {/* Footer section */}
             <Footer />
-        </>
+        </div>
     );
 };
 export default DetailScreen;
