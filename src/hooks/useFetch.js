@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react';
-import { fetchDataFromAPI } from '../API';
+import axiosInstance from '../axiosInstance'
 
 const useFetch = (url) => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const ApiCall = async () => {
+            setLoading(true);
+            setError(null);
             try {
-                const result = await fetchDataFromAPI(url);
-                setData(result);
+                const result = await axiosInstance.get(url);
+                setData(result.data);
             } catch (error) {
-                setError(`SomeThing was Wrong: ${error.message}`);
+                console.log(error?.message)
+                setError(`Something went wrong: ${error.message}`);
             } finally {
                 setLoading(false);
             }

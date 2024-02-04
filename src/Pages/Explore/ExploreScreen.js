@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchDataFromAPI } from '../../API';
+import axiosInstance from '../../axiosInstance';
 import InfinityScreen from './InfinityScreen';
 import Wrapper from '../../Components/Wrapper/Wrapper';
 import './ExploreScreen.scss';
@@ -16,8 +16,8 @@ const ExploreScreen = () => {
     React.useEffect(() => {
         const fetchData = async () => {
             window.scroll(0, 0);
-            await fetchDataFromAPI(`/${mediaType}/${menuType}?page=${page}`)
-                .then((data) => setMovies(data.results))
+            await axiosInstance.get(`/${mediaType}/${menuType}?page=${page}`)
+                .then((data) => setMovies(data.data.results))
                 .catch((err) => console.log(`Error Fetching Data: ${err.message}`));
         };
         fetchData();
