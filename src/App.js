@@ -2,33 +2,15 @@ import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Home, Details, Credits, Search, Explore, Profile, Login, SignUp, NotFound } from './Pages';
-import { fetchUpComing } from './Redux/bannerSlice';
-import { setMovies, setTv } from './Redux/genresSlice';
+import { fetchBannerLists, fetchGenreMovieLists, fetchGenreTvLists } from './Redux/fetchDataSlice';
 import { login, logout } from './Redux/userSlice';
 import Nav from './Components/Header/Nav';
 import GoToButton from './Components/GoToButton/GoToButton';
-import { fetchDataFromAPI } from './API';
 import { auth } from './firebase';
 
 function App() {
     const dispatch = useDispatch();
     const { user } = useSelector((state) => state?.user);
-
-    useEffect(() => {
-        const apiTesting = async () => {
-            try {
-                const [movieGenre, tvGenre] = await Promise.all([
-                    fetchDataFromAPI('/genre/movie/list'),
-                    fetchDataFromAPI('/genre/tv/list'),
-                ]);
-                dispatch(setMovies(movieGenre?.genres));
-                dispatch(setTv(tvGenre?.genres));
-            } catch (error) {
-                console.error(`Error fetch Data: ${error.message}`);
-            }
-        };
-        apiTesting();
-    }, [dispatch]);
 
     useEffect(() => {
         const unSubscribed = () => {
@@ -53,7 +35,9 @@ function App() {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(fetchUpComing());
+        dispatch(fetchBannerLists());
+        dispatch(fetchGenreMovieLists());
+        dispatch(fetchGenreTvLists());
     }, [dispatch]);
 
     return (
