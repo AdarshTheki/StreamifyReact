@@ -1,8 +1,6 @@
 import Banner from '../../Components/Banner/Banner';
-import Trending from './Trending';
-import Movies from "./Movies";
-import TVShow from "./TVShow";
 import Footer from '../../Components/Footer/Footer';
+import RowSection from './RowSection';
 import './HomeScreen.css';
 
 function HomeScreen() {
@@ -10,9 +8,34 @@ function HomeScreen() {
         <div>
             <Banner />
             <div className='max-width'>
-                <Trending />
-                <Movies />
-                <TVShow />
+                <RowSection
+                    title='Trending Movie'
+                    items={['day', 'week']}
+                    defaultItem='day'
+                    fetchUrl='trending/movie'
+                    show='movie'
+                />
+                <RowSection
+                    title='Trending Tv'
+                    items={['day', 'week']}
+                    defaultItem='day'
+                    fetchUrl='trending/tv'
+                    show='tv'
+                />
+                <RowSection
+                    title='Movies'
+                    items={['upcoming', 'now_playing', 'popular', 'top_rated']}
+                    defaultItem='upcoming'
+                    fetchUrl='movie'
+                    show='movie'
+                />
+                <RowSection
+                    title='TV Show'
+                    items={['top_rated', 'on_the_air', 'popular', 'airing_today']}
+                    defaultItem='top_rated'
+                    fetchUrl='tv'
+                    show='tv'
+                />
             </div>
             <Footer />
         </div>
