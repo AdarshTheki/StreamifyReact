@@ -1,7 +1,9 @@
 ### React Stream Website
 
 #### Firebase Host Link1 : https://netflix-59621.web.app
+
 #### Firebase Host Link2 : https://netflix-59621.firebaseapp.com
+
 #### Netlify Hosted Link : https://react-stream-web-app.netlify.app
 
 ## Future Options
@@ -33,3 +35,17 @@ Add more features in Soon...
 11. **Continue Watching**: Implement a feature that remembers where the user left off in a movie or TV show and allows them to resume from that point seamlessly.
 
 12. **Content Management**: Build an admin interface to manage the content, including adding, updating, and removing movies and TV shows from the application's database.
+
+#### Image Size Adjust:
+```js
+{
+    "base_url": "http://image.tmdb.org/t/p/",
+    "secure_base_url": "https://image.tmdb.org/t/p/",
+    "max width": "w1920_and_h800_multi_faces",
+    "backdrop_sizes": [ "w300", "w780", "w1280", "original" ],
+    "logo_sizes": [ "w45", "w92", "w154", "w185", "w300", "w500", "original" ],
+    "poster_sizes": [ "w92", "w154", "w185", "w342", "w500", "w780", "original" ],
+    "profile_sizes": [ "w45", "w185", "h632", "original" ],
+    "still_sizes": [ "w92", "w185", "w300", "original" ]
+}
+```
