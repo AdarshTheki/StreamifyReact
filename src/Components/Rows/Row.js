@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import dayjs from 'dayjs';
 import CircularBar from '../Progressbar/CircularProgressBar';
-import Genres from './genres/Genres';
-import Img from '../LazyImage/Img';
+import Genres from './Genres';
+import LazyImage from '../LazyImage/LazyImage';
 
 const Row = ({
     show,
@@ -16,14 +16,14 @@ const Row = ({
     vote_average,
     genre_ids,
 }) => {
-    const posterUrl = poster_path ? `https://image.tmdb.org/t/p/w200/${poster_path}` : null;
+    const posterUrl = poster_path ? `https://image.tmdb.org/t/p/w185/${poster_path}` : null;
     const names = (name || title)?.substring(0, 23);
     const date = dayjs(release_date || first_air_date).format('DD MMM, YYYY');
 
     return (
         <div className='rowPostContainer'>
             <NavLink to={`/show/${show}/${id}`} className='rowPoster'>
-                <Img src={posterUrl} className={'rowImg'} />
+                <LazyImage src={posterUrl} className={'rowImg'} />
                 <CircularBar percentage={(vote_average * 10)?.toFixed(0)} />
                 <Genres genres={genre_ids} />
             </NavLink>

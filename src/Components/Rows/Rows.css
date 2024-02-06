@@ -14,26 +14,35 @@
 .row__container #leftArrow,
 .row__container #rightArrow {
     position: absolute;
-    top: 30%;
+    top: 0;
+    bottom: 0;
     cursor: pointer;
-    z-index: 40;
+    z-index: 10;
 }
 #leftArrow {
-    left: 10px;
+    left: 0px;
 }
 #rightArrow {
-    right: 10px;
+    right: 0px;
 }
 #leftArrow svg,
 #rightArrow svg {
-    font-size: 2rem;
-    padding: 2px;
-    border-radius: 5px;
-    background: #333;
+    font-size: 3rem;
+    position: relative;
+    top: 30%;
+    border-radius: 1vmax;
+    transition: transform 0.3s ease-in-out;
 }
+#leftArrow svg:hover {
+    transform: translateX(-20%);
+}
+#rightArrow svg:hover {
+    transform: translateX(20%);
+}
+
 #leftArrow svg:active,
 #rightArrow svg:active {
-    background: #111;
+    background: #333333a4;
 }
 
 .rowPostContainer {

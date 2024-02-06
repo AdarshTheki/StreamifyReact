@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Row from '../../Components/Rows/Row';
-import { fetchDataFromAPI } from '../../API';
+import axiosInstance from '../../axiosInstance';
 import './SearchResult.scss';
 
 const SearchResult = () => {
@@ -17,11 +17,11 @@ const SearchResult = () => {
         const initialDataFetch = async () => {
             setLoading(true);
             try {
-                const res = await fetchDataFromAPI(`/search/multi?query=${query}&page=${page}`);
-                setTotalPage(res?.total_pages);
+                const res = await axiosInstance.get(`/search/multi?query=${query}&page=${page}`);
+                setTotalPage(res?.data?.total_pages);
                 setCollection((prev) => {
-                    if (page === 1) return res.results;
-                    return [...prev, ...res.results];
+                    if (page === 1) return res?.data?.results;
+                    return [...prev, ...res?.data?.results];
                 });
             } catch (error) {
                 console.error('Error Fetching Data: ', error.message);
@@ -48,7 +48,7 @@ const SearchResult = () => {
         return () => window.removeEventListener('scroll', handleInfiniteScroll);
     }, [handleInfiniteScroll]);
 
-    const sortedCollection = [...collection].sort((a, b) => {
+    const sortedCollection = [...collection]?.sort((a, b) => {
         if (sortBy === 'popularity') {
             return mediaType === 'tv' ? a.popularity - b.popularity : b.popularity - a.popularity;
         } else if (sortBy === 'vote_average') {
