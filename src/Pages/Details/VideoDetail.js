@@ -4,7 +4,7 @@ import useFetch from '../../Hooks/useFetch';
 import { PlayIcon } from '../../Components/VideoPopup/PlayIcon';
 import VideoPopup from '../../Components/VideoPopup/VideoPopup';
 import RowLoading from '../../Components/Loading/RowLoading';
-import Img from '../../Components/LazyImage/Img';
+import LazyImage from '../../Components/LazyImage/LazyImage';
 import './VideoSection.scss';
 
 const VideoSection = () => {
@@ -21,15 +21,14 @@ const VideoSection = () => {
             <h2>Video Trailers</h2>
             <div className='videos'>
                 {data?.results?.map((item) => (
-                    <div
-                        key={item?.id}
-                        className='videoItem'
-                        onClick={() => {
-                            setVideoId(item?.key);
-                            setShow(true);
-                        }}>
-                        <div className='videoThumbnail'>
-                            <Img src={`https://img.youtube.com/vi/${item?.key}/mqdefault.jpg`} />
+                    <div key={item?.id} className='videoItem'>
+                        <div
+                            className='videoThumbnail'
+                            onClick={() => {
+                                setVideoId(item?.key);
+                                setShow(true);
+                            }}>
+                            <LazyImage src={`https://img.youtube.com/vi/${item?.key}/mqdefault.jpg`} />
                             <PlayIcon />
                         </div>
                         <h2 className='videoTitle'>{item?.name?.substring(0, 20)}</h2>
