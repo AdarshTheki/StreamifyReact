@@ -32,8 +32,8 @@
             @include md {
                 width: 25%;
             }
-            cursor: pointer;
             .videoThumbnail {
+                cursor: pointer;
                 margin-bottom: 15px;
                 position: relative;
                 img {

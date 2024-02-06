@@ -60,6 +60,31 @@ body {
     scroll-behavior: smooth;
     // min-height: 500vh;
 }
+
+// Progressive Image Loading
+.loadingImage {
+    filter: blur(10px) !important;
+}
+.loadedImage {
+    filter: blur(0px) !important;
+    transition: filter 0.5s linear !important;
+}
+
+// Poster Background Image Set and gradient
+.bg-image-poster {
+    background-position: center;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+.bg-color-gradient {
+    background-image: linear-gradient(
+        to top,
+        var(--black-800) calc((50vw - 170px) - 340px),
+        rgba(0, 0, 0, 0.6) 60%,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+}
+
 .inline-flex {
     display: inline-flex;
     flex-direction: column;
@@ -103,18 +128,6 @@ body {
     // background: linear-gradient(to right, transparent, var(--black-800));
     background: linear-gradient(to right, transparent, #1010107a, #101010da, var(--black-800));
 }
-// @media (max-width: 100em) {
-//     .box-shadow-credits {
-//         position: absolute;
-//         width: 60px;
-//         top: 0;
-//         right: 0;
-//         bottom: 0;
-//         background: linear-gradient(to right, transparent, #1010107a, #101010da, var(--black-800));
-//     }
-// }
-
-
 /* 
 =======
 Spinner
@@ -175,4 +188,9 @@ Spinner
 }
 .scrollbar::-webkit-scrollbar-thumb {
     background: var(--black-700);
+}
+
+// Arrow button
+#displayNone {
+    display: none;
 }
