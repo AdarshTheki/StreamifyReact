@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import useFetch from '../../Hooks/useFetch';
+import useFetch from '../../hooks/useFetch';
 import RowLoading from '../Loading/RowLoading';
 import Row from './Row';
 import './Rows.css';
@@ -9,13 +9,13 @@ function Rows({ fetchUrl, show, toggle }) {
     const { data, loading, error } = useFetch(fetchUrl);
     const containerRef = useRef(null);
 
-    const sideScroll = (direction) => {
+    const sideScroll = useCallback((direction) => {
         const scrollAmount = direction === 'left' ? -400 : 400;
         containerRef.current.scrollBy({
             left: scrollAmount,
             behavior: 'smooth',
         });
-    };
+    }, []);
 
     if (loading || error) return <LoadData />;
 
@@ -38,11 +38,11 @@ function Rows({ fetchUrl, show, toggle }) {
             {data.results.length
                 ? !toggle && (
                       <>
-                          <div id='leftArrow' onMouseOver={() => sideScroll('left')}>
-                              <FaAngleLeft onClick={() => sideScroll('left')} />
+                          <div id='leftArrow' onClick={() => sideScroll('left')}>
+                              <FaAngleLeft size={25} />
                           </div>
-                          <div id='rightArrow' onMouseOver={() => sideScroll('right')}>
-                              <FaAngleRight onClick={() => sideScroll('right')} />
+                          <div id='rightArrow' onClick={() => sideScroll('right')}>
+                              <FaAngleRight size={25} />
                           </div>
                       </>
                   )

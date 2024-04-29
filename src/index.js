@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import store from './Redux/store';
+import store from './redux/store';
 import 'react-loading-skeleton/dist/skeleton.css';
 import App from './App';
 import './global.scss';

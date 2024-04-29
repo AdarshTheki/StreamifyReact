@@ -1,33 +1,110 @@
-import React from 'react';
-import Row from '../../Components/Rows/Row';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Wrapper from '../../components/Wrapper/Wrapper';
 
-export default function InfinityScreen({ movies, sort,show }) {
-    const [filterData, setFilterData] = React.useState([]);
+export default function InfinityScrolling({ renderListItem, getData, listData = [], type }) {
+    const [sort, setSort] = useState('popularity-az');
+    const [category, setCategory] = useState('popular');
+    const pageNumber = useRef(1);
+    const [loading, setLoading] = useState(false);
 
-    React.useEffect(() => {
-        const sortOptions = {
+    const observer = useRef(null);
+
+    const lastElementObserver = useCallback((node) => {
+        if (loading) return;
+        if (observer.current) observer.current.disconnect();
+
+        observer.current = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                pageNumber.current += 1;
+                fetchData();
+            }
+        });
+        if (node) observer.current.observe(node);
+    });
+
+    const fetchData = useCallback(async () => {
+        setLoading(true);
+        try {
+            await getData(type, category, pageNumber.current);
+        } catch (error) {
+            console.log(error?.message);
+        } finally {
+            setLoading(false);
+        }
+    }, [category, getData, type]);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+    const sortOptions = useMemo(() => {
+        return {
             'popularity-az': (a, b) => a.popularity - b.popularity,
             'popularity-za': (a, b) => b.popularity - a.popularity,
             'vote_average-az': (a, b) => a.vote_average - b.vote_average,
             'vote_average-za': (a, b) => b.vote_average - a.vote_average,
-            'title-az': (a, b) =>
-                a.title
-                    ? a.title.localeCompare(b.title)
-                    : a.original_name.localeCompare(b.original_name),
-            'title-za': (a, b) =>
-                a.title
-                    ? b.title.localeCompare(a.title)
-                    : b.original_name.localeCompare(a.original_name),
         };
-        const sorted = [...movies]?.sort(sortOptions[sort]);
-        setFilterData(sorted);
-    }, [sort, movies]);
+    }, []);
+
+    const sorted = useMemo(() => {
+        return [...listData]?.sort(sortOptions[sort]);
+    }, [listData, sort, sortOptions]);
+
+    const renderList = useCallback(() => {
+        if (sorted.length === 0) {
+            return <h2>Data Not Found !.</h2>;
+        }
+        return sorted.map((item, index) => (
+            <React.Fragment key={index}>
+                {renderListItem(
+                    { ...item, show: 'movie' },
+                    index,
+                    index === sorted.length - 1 ? lastElementObserver : null
+                )}
+            </React.Fragment>
+        ));
+    }, [sorted, renderListItem, lastElementObserver]);
 
     return (
-        <div className='infinityScreen'>
-            {filterData?.map((item) => (
-                <Row key={item.id} {...item} show={show} />
-            ))}
-        </div>
+        <Wrapper>
+            <div className='filterContainer'>
+                <div className='filterOption'>
+                    <label htmlFor='sort'>Filters By</label>
+                    <select id='sort' value={sort} onChange={(e) => setSort(e.target.value)}>
+                        <option value='popularity-az'>Popularity ascending</option>
+                        <option value='popularity-za'>Popularity descending</option>
+                        <option value='vote_average-az'>Rating ascending</option>
+                        <option value='vote_average-za'>Rating descending</option>
+                    </select>
+                </div>
+
+                <div className='filterOption'>
+                    <label htmlFor='menuType'>Menu Type:</label>
+                    {type === 'movie' ? (
+                        <select
+                            id='menuType'
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}>
+                            <option value='popular'>popular</option>
+                            <option value='now_playing'>now playing</option>
+                            <option value='upcoming'>upcoming</option>
+                            <option value='top_rated'>top rated</option>
+                        </select>
+                    ) : (
+                        <select
+                            id='menuType'
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}>
+                            <option value='popular'>popular</option>
+                            <option value='airing_today'>airing today</option>
+                            <option value='on_the_air'>On error TV</option>
+                            <option value='top_rated'>top rated</option>
+                        </select>
+                    )}
+                </div>
+            </div>
+            <div className='infinityScreen'>{renderList()}</div>
+            <div className='spinner'></div>
+        </Wrapper>
     );
 }

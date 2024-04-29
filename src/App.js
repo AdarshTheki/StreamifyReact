@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Home, Details, Credits, Search, Explore, Profile, Login, SignUp, NotFound } from './Pages';
-import { fetchBannerLists, fetchGenreMovieLists, fetchGenreTvLists } from './Redux/fetchDataSlice';
-import { login, logout } from './Redux/userSlice';
-import Nav from './Components/Header/Nav';
-import GoToButton from './Components/GoToButton/GoToButton';
+import { Home, Details, Credits, Search, Explore, Profile, Login, SignUp, NotFound } from './pages';
+import { fetchBannerLists, fetchGenreMovieLists, fetchGenreTvLists } from './redux/fetchDataSlice';
+import { login, logout } from './redux/userSlice';
+import Nav from './components/Header/Nav';
+import GoToButton from './components/GoToButton/GoToButton';
 import { auth } from './firebase';
 
 function App() {

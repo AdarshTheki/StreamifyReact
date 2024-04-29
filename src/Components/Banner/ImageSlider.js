@@ -24,13 +24,10 @@ const ImageSlider = ({ slides, timeStamp = 50000 }) => {
     };
 
     useEffect(() => {
-        function imageSlider() {
-            ref.current.scrollTo({
-                left: currentIndex * 105,
-                behavior: 'smooth',
-            });
-        }
-        imageSlider();
+        ref.current.scrollTo({
+            left: currentIndex * 105,
+            behavior: 'smooth',
+        });
     }, [currentIndex]);
 
     const imageUrls = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${slides[currentIndex]?.backdrop_path}`;

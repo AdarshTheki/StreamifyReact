@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Rows from '../../Components/Rows/Rows';
+import Rows from '../../components/Rows/Rows';
 import { IoGrid, IoList } from 'react-icons/io5';
 
 const TrendingSection = ({ title, items, defaultItem, fetchUrl, show }) => {

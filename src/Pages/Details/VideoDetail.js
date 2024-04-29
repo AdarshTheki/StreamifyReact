@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import useFetch from '../../Hooks/useFetch';
-import { PlayIcon } from '../../Components/VideoPopup/PlayIcon';
-import VideoPopup from '../../Components/VideoPopup/VideoPopup';
-import RowLoading from '../../Components/Loading/RowLoading';
-import LazyImage from '../../Components/LazyImage/LazyImage';
+import useFetch from '../../hooks/useFetch';
+import { PlayIcon } from '../../components/VideoPopup/PlayIcon';
+import VideoPopup from '../../components/VideoPopup/VideoPopup';
+import RowLoading from '../../components/Loading/RowLoading';
+import LazyImage from '../../components/LazyImage/LazyImage';
 import './VideoSection.scss';
 
 const VideoSection = () => {
@@ -28,7 +28,9 @@ const VideoSection = () => {
                                 setVideoId(item?.key);
                                 setShow(true);
                             }}>
-                            <LazyImage src={`https://img.youtube.com/vi/${item?.key}/mqdefault.jpg`} />
+                            <LazyImage
+                                src={`https://img.youtube.com/vi/${item?.key}/mqdefault.jpg`}
+                            />
                             <PlayIcon />
                         </div>
                         <h2 className='videoTitle'>{item?.name?.substring(0, 20)}</h2>

@@ -13,11 +13,17 @@
 }
 .row__container #leftArrow,
 .row__container #rightArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111;
+    padding: 5px;
+    border-radius: 50%;
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 30%;
     cursor: pointer;
     z-index: 10;
+    transition: transform 0.3s ease-in-out;
 }
 #leftArrow {
     left: 0px;
@@ -25,24 +31,9 @@
 #rightArrow {
     right: 0px;
 }
-#leftArrow svg,
-#rightArrow svg {
-    font-size: 3rem;
-    position: relative;
-    top: 30%;
-    border-radius: 1vmax;
-    transition: transform 0.3s ease-in-out;
-}
-#leftArrow svg:hover {
-    transform: translateX(-20%);
-}
-#rightArrow svg:hover {
-    transform: translateX(20%);
-}
-
-#leftArrow svg:active,
-#rightArrow svg:active {
-    background: #333333a4;
+#leftArrow:active,
+#rightArrow:active {
+    background: #333;
 }
 
 .rowPostContainer {
@@ -55,11 +46,6 @@
     overflow: hidden;
     border-radius: 1vmax;
     margin-inline: auto;
-    cursor: pointer;
-    transition: scale 0.3s ease-out;
-}
-.rowPoster:hover {
-    scale: 0.96;
 }
 .rowPoster .rowImg {
     max-height: 300px;
