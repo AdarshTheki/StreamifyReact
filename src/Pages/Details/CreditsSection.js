@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import NoPicUser from '../../assets/user-male-grey.svg';
-import RowLoading from '../../Components/Loading/RowLoading';
-import useFetch from '../../Hooks/useFetch';
+import RowLoading from '../../components/Loading/RowLoading';
+import useFetch from '../../hooks/useFetch';
 
 export default function CreditsSection() {
     const { mediaType, id } = useParams();
     const { data, loading, error } = useFetch(`/${mediaType}/${id}/credits`);
-    
+
     const uniqueCrew = Array.from(
         new Map(
             data?.crew?.filter((item) => item?.profile_path).map((item) => [item.id, item])

@@ -20,7 +20,7 @@ export default function LazyImage({ src, className }) {
     }, [src]);
 
     return (
-        <img src={imgSrc} alt='moPoster' loading='lazy' className={className + ' ' + customClass} />
+        <img src={imgSrc} alt='moPoster' className={className + ' ' + customClass} />
     );
 }
 

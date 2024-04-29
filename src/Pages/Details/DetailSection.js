@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { PlayIcon } from '../../Components/VideoPopup/PlayIcon';
-import VideoPopup from '../../Components/VideoPopup/VideoPopup';
-import CircularProgressBar from '../../Components/Progressbar/CircularProgressBar';
+import { PlayIcon } from '../../components/VideoPopup/PlayIcon';
+import VideoPopup from '../../components/VideoPopup/VideoPopup';
+// import CircularProgressBar from '../../Components/Progressbar/CircularProgressBar';
 import lazy from '../../assets/picture-grey.svg';
-import useFetch from '../../Hooks/useFetch';
-import PosterLoading from '../../Components/Loading/PosterLoading';
-import { formatCurrency } from '../../Components/utils';
+import useFetch from '../../hooks/useFetch';
+import PosterLoading from '../../components/Loading/PosterLoading';
+import { formatCurrency } from '../../components/utils';
 
 export default function DetailSection() {
     const { mediaType, id } = useParams();

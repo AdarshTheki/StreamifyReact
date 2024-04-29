@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink, useParams } from 'react-router-dom';
 import { FaFacebook, FaInstagramSquare, FaTwitter, FaWikipediaW } from 'react-icons/fa';
-import useFetch from '../../Hooks/useFetch';
-import RowsLoading from '../../Components/Loading/RowLoading';
+import useFetch from '../../hooks/useFetch';
+import RowsLoading from '../../components/Loading/RowLoading';
 
 export default function SocialSection() {
     const { mediaType, id } = useParams();

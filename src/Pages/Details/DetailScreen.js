@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 import DetailSection from './DetailSection';
 import CreditsSection from './CreditsSection';
 import VideoDetail from './VideoDetail';
-import Footer from '../../Components/Footer/Footer';
-import Rows from '../../Components/Rows/Rows';
+import Footer from '../../components/Footer/Footer';
+import Rows from '../../components/Rows/Rows';
 import SocialSection from './SocialSection';
 import './style.scss';
 
