@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Row from '../../Components/Rows/Row';
+import Row from '../../components/Rows/Row';
 import axiosInstance from '../../axiosInstance';
 import './SearchResult.scss';
 
