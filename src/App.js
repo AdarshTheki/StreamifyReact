@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Home, Details, Credits, Search, Explore, Profile, Login, SignUp, NotFound } from './pages';
+import { NotFound, Credits, Details, Explore, Home, Profile, Search, Login, SignUp } from './pages';
 import { fetchBannerLists, fetchGenreMovieLists, fetchGenreTvLists } from './redux/fetchDataSlice';
-import { login, logout } from './redux/userSlice';
+import { login, logout } from './redux/authSlice';
 import Nav from './components/Header/Nav';
 import GoToButton from './components/GoToButton/GoToButton';
-import { auth } from './firebase';
+import { auth } from './config/firebase';
 
 function App() {
     const dispatch = useDispatch();

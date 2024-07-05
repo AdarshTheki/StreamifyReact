@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { auth } from '../../config/firebase';
 
 const Login = () => {
     const navigate = useNavigate();

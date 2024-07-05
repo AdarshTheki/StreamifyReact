@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axiosInstance from '../axiosInstance'
+import instance from '../config/instance';
 
 const useFetch = (url) => {
     const [data, setData] = useState([]);
@@ -11,10 +11,10 @@ const useFetch = (url) => {
             setLoading(true);
             setError(null);
             try {
-                const result = await axiosInstance.get(url);
+                const result = await instance.get(url);
                 setData(result.data);
             } catch (error) {
-                console.log(error?.message)
+                console.log(error?.message);
                 setError(`Something went wrong: ${error.message}`);
             } finally {
                 setLoading(false);

@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import axiosInstances from '../../axiosInstance';
+import instance from '../../config/instance';
 import Row from '../../components/Rows/Row';
 import InfinityScreen from './InfinityScreen';
 import './ExploreScreen.scss';
@@ -24,7 +24,7 @@ export default function ExploreInfinityScroll() {
             if (controllerRef.current) controllerRef.current.abort();
             controllerRef.current = new AbortController();
 
-            const response = await axiosInstances.get(
+            const response = await instance.get(
                 `/${type}/${category}?language=en-US&page=${page}`,
                 { signal: controllerRef.current.signal }
             );

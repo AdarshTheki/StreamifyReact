@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Row from '../../components/Rows/Row';
-import axiosInstance from '../../axiosInstance';
+import instance from '../../config/instance';
 import './SearchResult.scss';
 
 const SearchResult = () => {
@@ -17,7 +17,7 @@ const SearchResult = () => {
         const initialDataFetch = async () => {
             setLoading(true);
             try {
-                const res = await axiosInstance.get(`/search/multi?query=${query}&page=${page}`);
+                const res = await instance.get(`/search/multi?query=${query}&page=${page}`);
                 setTotalPage(res?.data?.total_pages);
                 setCollection((prev) => {
                     if (page === 1) return res?.data?.results;

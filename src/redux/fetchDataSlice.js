@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axiosInstance from '../axiosInstance';
+import instance from '../config/instance';
 
 const fetchBannerLists = createAsyncThunk('movies/fetchBannerLists', async () => {
-    const response = await axiosInstance.get('/movie/upcoming');
+    const response = await instance.get('/movie/upcoming');
     return response.data.results;
 });
 
 const fetchGenreMovieLists = createAsyncThunk('movies/fetchGenreMovieLists', async () => {
-    const response = await axiosInstance.get('/genre/movie/list');
+    const response = await instance.get('/genre/movie/list');
     return response.data.genres;
 });
 
 const fetchGenreTvLists = createAsyncThunk('tv/fetchGenreTvLists', async () => {
-    const response = await axiosInstance.get('/genre/tv/list');
+    const response = await instance.get('/genre/tv/list');
     return response.data.genres;
 });
 

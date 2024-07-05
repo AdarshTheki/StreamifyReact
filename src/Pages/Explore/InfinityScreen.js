@@ -9,22 +9,9 @@ export default function InfinityScrolling({ renderListItem, getData, listData = 
 
     const observer = useRef(null);
 
-    const lastElementObserver = useCallback((node) => {
-        if (loading) return;
-        if (observer.current) observer.current.disconnect();
-
-        observer.current = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                pageNumber.current += 1;
-                fetchData();
-            }
-        });
-        if (node) observer.current.observe(node);
-    });
-
     const fetchData = useCallback(async () => {
-        setLoading(true);
         try {
+            setLoading(true);
             await getData(type, category, pageNumber.current);
         } catch (error) {
             console.log(error?.message);
@@ -35,7 +22,23 @@ export default function InfinityScrolling({ renderListItem, getData, listData = 
 
     useEffect(() => {
         fetchData();
-    }, [fetchData]);
+    }, []);
+
+    const lastElementObserver = useCallback(
+        (node) => {
+            if (loading) return;
+            if (observer.current) observer.current.disconnect();
+
+            observer.current = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    pageNumber.current += 1;
+                    fetchData();
+                }
+            });
+            if (node) observer.current.observe(node);
+        },
+        [fetchData, loading]
+    );
 
     const sortOptions = useMemo(() => {
         return {
